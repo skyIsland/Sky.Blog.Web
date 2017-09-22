@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Tables Version="9.6.6467.3634" NameSpace="XHelloworld.Core" ConnName="dbconn" Output="">
+  <Table Name="Category" Description="分类" DbType="SqlServer">
+    <Columns>
+      <Column Name="Id" DataType="Int32" Identity="True" Description="编号" Primary="true" />
+      <Column Name="Title" DataType="String" Master="True" Length="200" Description="分类名称" />
+      <Column Name="KeyWord" DataType="String" Master="True" Length="200" Description="分类关键词" />
+      <Column Name="Description" DataType="String" Master="True" Length="200" Description="分类描述" />
+      <Column Name="CreateTime" DataType="DateTime" Description="创建时间" />
+      <Column Name="Rank" DataType="Int32" Description="排序" />
+    </Columns>
+  </Table>
+  <Table Name="Artilce" Description="文章" DbType="SqlServer">
+    <Columns>
+      <Column Name="Id" DataType="Int32" Identity="True" Description="编号" Primary="true" />
+      <Column Name="Title" DataType="String" Master="True" Length="200" Description="标题" />
+      <Column Name="Content" DataType="String" Master="True" Length="-1" Description="内容" />
+      <Column Name="KeyWord" DataType="String" Master="True" Length="200" Description="关键词" />
+      <Column Name="Description" DataType="String" Master="True" Length="200" Description="描述" />
+      <Column Name="CreateTime" DataType="DateTime" Description="创建时间" />
+    </Columns>
+  </Table>
+</Tables>

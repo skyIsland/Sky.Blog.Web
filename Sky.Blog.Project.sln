@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.6
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sky.Core", "Sky.Core\Sky.Core.csproj", "{162F323F-F1A4-4868-B205-80D557E4859C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sky.Models", "Sky.Models\Sky.Models.csproj", "{5EF7F268-F845-46F6-990F-BDC61BC9A703}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sky.Web", "Sky.Web\Sky.Web.csproj", "{1015C82A-2E0F-4394-BF58-43F1179B68FE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{162F323F-F1A4-4868-B205-80D557E4859C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{162F323F-F1A4-4868-B205-80D557E4859C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{162F323F-F1A4-4868-B205-80D557E4859C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{162F323F-F1A4-4868-B205-80D557E4859C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EF7F268-F845-46F6-990F-BDC61BC9A703}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EF7F268-F845-46F6-990F-BDC61BC9A703}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EF7F268-F845-46F6-990F-BDC61BC9A703}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EF7F268-F845-46F6-990F-BDC61BC9A703}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1015C82A-2E0F-4394-BF58-43F1179B68FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1015C82A-2E0F-4394-BF58-43F1179B68FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1015C82A-2E0F-4394-BF58-43F1179B68FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1015C82A-2E0F-4394-BF58-43F1179B68FE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
