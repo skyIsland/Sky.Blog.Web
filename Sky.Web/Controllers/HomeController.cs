@@ -53,6 +53,6 @@ namespace Sky.Web.Controllers
         public ActionResult About()
         {
             return View();
-        }
+        }        
     }
 }

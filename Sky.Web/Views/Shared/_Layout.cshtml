@@ -1,10 +1,10 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; Charset=gb2312">
+    <meta http-equiv="Content-Type" content="text/html; Charset=utf-8">
     <meta http-equiv="Content-Language" content="zh-CN">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <title>傻大蒙 - 一个.NET程序员的个人博客网站</title>
+    <title>倚楼听风雨 - 一个.NET程序员的个人博客网站</title>
     <link rel="shortcut icon" href="~/Content/images/Logo_40.png" type="image/x-icon">
     <!--Layui-->
     <link href="~/Scripts/plug/layui/css/layui.css" rel="stylesheet" />
@@ -25,24 +25,24 @@
             <a href="javascript:;" class="blog-user layui-hide">
                 <img src="~/Content/images/Absolutely.jpg" alt="Absolutely" title="Absolutely" />
             </a>
-            <!-- 傻大蒙 -->
-            <a class="blog-logo" href="/Home/Index">傻大蒙</a>
+            <!-- 倚楼听风雨 -->
+            <a class="blog-logo" href="/Home/Index">倚楼听风雨</a>
             <!-- 导航菜单 -->
             <ul class="layui-nav" lay-filter="nav">
                 <li class="layui-nav-item layui-this">
-                    <a href="/Home/Index"><i class="fa fa-home fa-fw"></i>&nbsp;网站首页</a>
+                    <a href="/"><i class="fa fa-home fa-fw"></i>&nbsp;网站首页</a>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="/Home/Article"><i class="fa fa-file-text fa-fw"></i>&nbsp;文章专栏</a>
+                    <a href="@Url.Action("Article","Home")"><i class="fa fa-file-text fa-fw"></i>&nbsp;文章专栏</a>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="/Home/Resource"><i class="fa fa-tags fa-fw"></i>&nbsp;资源分享</a>
+                    <a href="@Url.Action("Resource","Home")"><i class="fa fa-tags fa-fw"></i>&nbsp;资源分享</a>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="/Home/Timeline"><i class="fa fa-hourglass-half fa-fw"></i>&nbsp;点点滴滴</a>
+                    <a href="@Url.Action("TimeLine","Home")"><i class="fa fa-hourglass-half fa-fw"></i>&nbsp;点点滴滴</a>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="/Home/About"><i class="fa fa-info fa-fw"></i>&nbsp;关于本站</a>
+                    <a href="@Url.Action("About","Home")"><i class="fa fa-info fa-fw"></i>&nbsp;关于本站</a>
                 </li>
             </ul>
             <!-- 手机和平板的导航开关 -->
@@ -54,7 +54,7 @@
     @RenderBody()
     <!-- 底部 -->
     <footer class="blog-footer">
-        <p><span>Copyright</span><span>&copy;</span><span>2017</span><a href="http://www.shadameng.xyz">傻大蒙</a><span>Design By Sdm</span></p>
+        <p><span>Copyright</span><span>&copy;</span><span>2017</span><a href="http://www.shadameng.xyz">倚楼听风雨</a><span>Design By Sdm</span></p>
         <p><a href="#" target="_blank">桂ICP备17004359号</a></p>
     </footer>
     <!--侧边导航-->

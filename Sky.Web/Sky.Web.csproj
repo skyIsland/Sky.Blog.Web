@@ -1,4 +1,5 @@
-﻿<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -101,10 +102,13 @@
     <Content Include="Content\css\detail.css" />
     <Content Include="Content\css\global.css" />
     <Content Include="Content\css\home.css" />
+    <Content Include="Content\css\index.css" />
+    <Content Include="Content\css\main.css" />
     <Content Include="Content\css\prettify.css" />
     <Content Include="Content\css\resource.css" />
     <Content Include="Content\css\timeline.css" />
     <Content Include="Content\images\Absolutely.jpg" />
+    <Content Include="Content\images\background.jpg" />
     <Content Include="Content\images\cover\201703051349045432.jpg" />
     <Content Include="Content\images\cover\201703051847567306.jpg" />
     <Content Include="Content\images\cover\201703142313157316.jpg" />
@@ -123,12 +127,15 @@
     <Content Include="Content\images\qzone_32.png" />
     <Content Include="Content\images\wechat_32.png" />
     <Content Include="Content\images\weibo_32.png" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\about.js" />
+    <Content Include="Scripts\datalist.js" />
     <Content Include="Scripts\detail.js" />
     <Content Include="Scripts\global.js" />
     <Content Include="Scripts\home.js" />
+    <Content Include="Scripts\index.js" />
+    <Content Include="Scripts\main.js" />
+    <Content Include="Scripts\pagesize.js" />
     <Content Include="Scripts\plug\font-awesome\css\font-awesome.css" />
     <Content Include="Scripts\plug\font-awesome\css\font-awesome.min.css" />
     <Content Include="Scripts\plug\font-awesome\fonts\fontawesome-webfont.svg" />
@@ -239,7 +246,14 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\Filter\EntityAuthorizeAttribute.cs" />
+    <Compile Include="App_Start\Filter\MvcHandleErrorAttribute.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
+    <Compile Include="Common\EntityModelBinder.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -252,9 +266,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\plug\font-awesome\fonts\fontawesome-webfont.eot" />
     <Content Include="Scripts\plug\font-awesome\fonts\fontawesome-webfont.ttf" />
     <Content Include="Scripts\plug\font-awesome\fonts\fontawesome-webfont.woff" />
@@ -292,6 +303,17 @@
     <Content Include="Scripts\plug\layui\font\iconfont.ttf" />
     <Content Include="Scripts\plug\layui\font\iconfont.woff" />
     <Content Include="Views\Home\Article.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Detail.cshtml" />
+    <Content Include="Views\Home\Resource.cshtml" />
+    <Content Include="Views\Home\TimeLine.cshtml" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\Login\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\DataList.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Main.cshtml" />
+    <Content Include="Areas\Admin\Views\Login\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -301,12 +323,18 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\Base\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Sky.Common\Sky.Common.csproj">
+      <Project>{84839dfc-8598-400e-9a88-e5d819bc410f}</Project>
+      <Name>Sky.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Sky.Core\Sky.Core.csproj">
       <Project>{162f323f-f1a4-4868-b205-80d557e4859c}</Project>
       <Name>Sky.Core</Name>

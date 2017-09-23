@@ -1,6 +1,6 @@
 ﻿/*
 
-@Name：不落阁整站模板源码 
+@Name：倚楼听风雨整站模板源码 
 @Author：Absolutely 
 @Site：http://www.lyblogs.cn
 
@@ -21,7 +21,7 @@ layui.use(['element', 'jquery', 'form', 'layedit'], function () {
     layui.form().verify({
         content: function (value) {
             value = $.trim(layedit.getText(editIndex));
-            if (value == "") return "自少得有一个字吧";
+            if (value == "") return "至少得有一个字吧";
             layedit.sync(editIndex);
         }
     });
@@ -44,7 +44,7 @@ layui.use(['element', 'jquery', 'form', 'layedit'], function () {
         setTimeout(function () {
             layer.close(index);
             var content = data.field.editorContent;
-            var html = '<li><div class="comment-parent"><img src="../images/Logo_40.png"alt="模拟留言"/><div class="info"><span class="username">模拟留言</span></div><div class="content">' + content + '</div><p class="info info-footer"><span class="time">2017-03-18 18:09</span><a class="btn-reply"href="javascript:;" onclick="btnReplyClick(this)">回复</a></p></div><!--回复表单默认隐藏--><div class="replycontainer layui-hide"><form class="layui-form"action=""><div class="layui-form-item"><textarea name="replyContent"lay-verify="replyContent"placeholder="请输入回复内容"class="layui-textarea"style="min-height:80px;"></textarea></div><div class="layui-form-item"><button class="layui-btn layui-btn-mini"lay-submit="formReply"lay-filter="formReply">提交</button></div></form></div></li>';
+            var html = '<li><div class="comment-parent"><img src="~/Content/images/Logo_40.png"alt="模拟留言"/><div class="info"><span class="username">模拟留言</span></div><div class="content">' + content + '</div><p class="info info-footer"><span class="time">2017-03-18 18:09</span><a class="btn-reply"href="javascript:;" onclick="btnReplyClick(this)">回复</a></p></div><!--回复表单默认隐藏--><div class="replycontainer layui-hide"><form class="layui-form"action=""><div class="layui-form-item"><textarea name="replyContent"lay-verify="replyContent"placeholder="请输入回复内容"class="layui-textarea"style="min-height:80px;"></textarea></div><div class="layui-form-item"><button class="layui-btn layui-btn-mini"lay-submit="formReply"lay-filter="formReply">提交</button></div></form></div></li>';
             $('.blog-comment').append(html);
             $('#remarkEditor').val('');
             editIndex = layui.layedit.build('remarkEditor', {
@@ -63,7 +63,7 @@ layui.use(['element', 'jquery', 'form', 'layedit'], function () {
         setTimeout(function () {
             layer.close(index);
             var content = data.field.replyContent;
-            var html = '<div class="comment-child"><img src="../images/Absolutely.jpg"alt="Absolutely"/><div class="info"><span class="username">模拟回复</span><span>' + content + '</span></div><p class="info"><span class="time">2017-03-18 18:26</span></p></div>';
+            var html = '<div class="comment-child"><img src="~/Content/images/Absolutely.jpg"alt="Absolutely"/><div class="info"><span class="username">模拟回复</span><span>' + content + '</span></div><p class="info"><span class="time">2017-03-18 18:26</span></p></div>';
             $(data.form).find('textarea').val('');
             $(data.form).parent('.replycontainer').before(html).siblings('.comment-parent').children('p').children('a').click();
             layer.msg("回复成功", { icon: 1 });

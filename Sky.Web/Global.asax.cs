@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sky.Web.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +13,8 @@ namespace Sky.Web
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
+            //注册实体数据绑定器
+            EntityModelBinderProvider.Register();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
     }
