@@ -1,14 +1,6 @@
-﻿/*
-
-@Name：倚楼听风雨整站模板源码 
-@Author：Absolutely 
-@Site：http://www.lyblogs.cn
-
-*/
-
-layui.use(['element', 'jquery', 'form', 'layedit'], function () {
+﻿layui.use(['element', 'jquery', 'form', 'layedit'], function () {
     var element = layui.element();
-    var form = layui.form();
+    var form = layui.form;
     var $ = layui.jquery;
     var layedit = layui.layedit;
 
@@ -18,7 +10,7 @@ layui.use(['element', 'jquery', 'form', 'layedit'], function () {
         tool: ['face', '|', 'left', 'center', 'right', '|', 'link'],
     });
     //评论和留言的编辑器的验证
-    layui.form().verify({
+    form.verify({
         content: function (value) {
             value = $.trim(layedit.getText(editIndex));
             if (value == "") return "至少得有一个字吧";

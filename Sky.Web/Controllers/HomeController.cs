@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Sky.Web.Filter;
 
 namespace Sky.Web.Controllers
 {
+    [TestActionExecuting]
     public class HomeController : Controller
     {
         // GET: Home

@@ -8,6 +8,7 @@ using Sky.Web.Filter;
 
 namespace Sky.Web.Areas.Admin.Controllers
 {
+    /// <inheritdoc />
     /// <summary>
     /// 基类控制器
     /// </summary>

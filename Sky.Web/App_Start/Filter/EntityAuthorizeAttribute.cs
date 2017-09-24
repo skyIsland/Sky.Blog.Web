@@ -29,4 +29,14 @@ namespace Sky.Web.Filter
             base.OnAuthorization(filterContext);
         }
     }
+
+    public class TestActionExecuting : ActionFilterAttribute
+    {
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            var request = filterContext.RequestContext.HttpContext.Request;
+            NewLife.Log.XTrace.Log.Info($"Ip:{NewLife.Web.WebHelper.UserHost}访问了{request.Url}!来源{request.UrlReferrer},浏览器{request.Browser.Browser}");
+            base.OnActionExecuting(filterContext);
+        }
+    }
 }

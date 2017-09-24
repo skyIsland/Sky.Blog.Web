@@ -1,1 +1,41 @@
 ﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>数据列表页面</title>
+    <!-- layui.css -->
+    <link href="~/Scripts/plug/layui/css/layui.css" rel="stylesheet" />
+    <style>
+        .layui-btn-small {
+            padding: 0 15px;
+        }
+
+        .layui-form-checkbox {
+            margin: 0;
+        }
+
+        tr td:not(:nth-child(0)),
+        tr th:not(:nth-child(0)) {
+            text-align: center;
+        }
+
+        #dataConsole {
+            text-align: center;
+        }       
+    </style>
+    @RenderSection("Head",false)
+</head>
+<body>
+@RenderBody()
+<!-- layui.js -->
+<script src="~/Scripts/plug/layui/layui.js"></script>
+<!-- layui规范化用法 -->
+@RenderSection("Scripts",false)
+</body>
+</html>

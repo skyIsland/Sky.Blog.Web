@@ -1,0 +1,6 @@
+﻿@model Sky.Models.Article
+@{
+    ViewBag.Title = "编辑文章";
+    Layout = "~/Areas/Admin/Views/Shared/_Form.cshtml";
+    var categories = ViewBag.Categories as IList<Sky.Models.ArticleClass>;
+}

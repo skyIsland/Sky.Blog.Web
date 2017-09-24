@@ -16,6 +16,7 @@ namespace Sky.Web.Areas.Admin.Controllers
             //已登陆
             if (Sky.Core.Login.UserLogin.CurrUserData != null)
             {
+                SysUser.SaveLoginInfo(Sky.Core.Login.UserLogin.CurrUserData);
                 return Redirect("/Admin/Home/Main");
             }
             else
@@ -35,6 +36,7 @@ namespace Sky.Web.Areas.Admin.Controllers
             if (user == null) return Json(new AjaxResult { Message = "你没输对账号啵!" });
             if (user.LoginPwd != loginPwd) return Json(new AjaxResult { Message = "你的密码没输对啊!" });
             Sky.Core.Login.UserLogin.Signin(user);
+            SysUser.SaveLoginInfo(user);
             return Json(new AjaxResult { Result = true, Message = "欢迎回来！" });
         }
         /// <summary>登出</summary>

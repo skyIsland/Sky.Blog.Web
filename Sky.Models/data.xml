@@ -12,4 +12,30 @@
       <Column Name="LoginCount" DataType="Int32" Nullable="True" Description="登录次数" />
     </Columns>
   </Table>
+  <Table Name="ArticleClass" Description="文章分类" DbType="SqlServer">
+    <Columns>
+      <Column Name="Id" DataType="Int32" Identity="True" Description="Id" Primary="true" />
+      <Column Name="ClassName" DataType="String" Master="True" Description="分类名称" />
+      <Column Name="ClassEname" DataType="String" Master="True" Description="分类英文名" />
+      <Column Name="ParentId" DataType="Int32" Master="True" Description="父级Id" />
+      <Column Name="ParentIds" DataType="String" Description="父级Ids" />
+      <Column Name="Sort" DataType="Int32" Description="排序" />
+      <Column Name="AddTime" DataType="DateTime" Description="添加时间" />
+    </Columns>
+  </Table>
+  <Table Name="Article" Description="文章" DbType="SqlServer">
+    <Columns>
+      <Column Name="Id" DataType="Int32" Identity="True" Description="Id" Primary="true" />
+      <Column Name="ArticlassId" DataType="Int32" Master="True" Description="文章分类ID" />
+      <Column Name="Title" DataType="String" Master="True" Description="标题" />
+      <Column Name="Author" DataType="String" Master="True" Description="作者" />
+      <Column Name="Content" DataType="String" Master="True" Length="500" Description="文章内容" />
+      <Column Name="IsTop" DataType="Boolean" Description="是否置顶" />
+      <Column Name="IsRecommend" DataType="Boolean" Description="是否推荐" />
+      <Column Name="IsDelete" DataType="Boolean" Description="是否删除" />
+      <Column Name="AddTime" DataType="DateTime" Description="添加时间" />
+      <Column Name="EditTime" DataType="DateTime" Description="编辑时间" />
+      <Column Name="AddUser" DataType="String" Description="添加人" />
+    </Columns>
+  </Table>
 </Tables>

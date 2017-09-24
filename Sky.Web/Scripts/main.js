@@ -1,17 +1,9 @@
-﻿/*
-
-@Name：不落阁后台模板源码 
-@Author：Absolutely 
-@Site：http://www.lyblogs.cn
-
-*/
-
-layui.define(['element', 'layer', 'util', 'pagesize', 'form'], function (exports) {
+﻿layui.define(['element', 'layer', 'util', 'pagesize', 'form'], function (exports) {
     var $ = layui.jquery;
-    var element = layui.element();
+    var element = layui.element;
     var layer = layui.layer;
     var util = layui.util;
-    var form = layui.form();
+    var form = layui.form;
     //form.render();
     //快捷菜单开关
     $('span.sys-title').click(function (e) {
@@ -155,7 +147,7 @@ layui.define(['element', 'layer', 'util', 'pagesize', 'form'], function (exports
     }
 
 
-    runSteward();
+    //runSteward();
     //管家功能
     function runSteward() {
         var layerSteward;   //管家窗口
@@ -202,16 +194,17 @@ layui.define(['element', 'layer', 'util', 'pagesize', 'form'], function (exports
                 $('input[lay-filter=steward]').siblings('.layui-form-switch').removeClass('layui-form-onswitch');
                 $('input[lay-filter=steward]').prop("checked", false);
             });
-            form.on('switch(steward)', function (data) {
-                if (data.elem.checked) {
-                    isStop = false;
-                    clearInterval(interval);
-                    runSteward();
-                } else {
-                    isStop = true;
-                    layer.close(layerSteward);
-                }
-            })
+            form.on('switch(steward)',
+                function(data) {
+                    if (data.elem.checked) {
+                        isStop = false;
+                        clearInterval(interval);
+                        runSteward();
+                    } else {
+                        isStop = true;
+                        layer.close(layerSteward);
+                    }
+                });
         }
     }
 
