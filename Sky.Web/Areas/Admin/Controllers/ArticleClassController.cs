@@ -38,28 +38,33 @@ namespace Sky.Web.Areas.Admin.Controllers
         public ActionResult Edit(ArticleClass model)
         {
             return View(model);
-        }
-        [HttpGet]
-        public ActionResult CheckName(string name)
-        {
-            var result=new AjaxResult();
-            var records = ArticleClass.FindAll(ArticleClass._.ClassName, name).FirstOrDefault();
-            if (records == null)
-            {
-                result.Result = true;
-            }
-            else
-            {
-                result.Message = "分类已存在!";
-            }
-            return Json(result,JsonRequestBehavior.AllowGet);
-        }
+        }      
         [HttpPost]
         public ActionResult Save(ArticleClass model)
         {
+            model.ClassName = model.ClassName.Trim();         
+            var records = ArticleClass.FindAll(ArticleClass._.ClassName, model.ClassName).FirstOrDefault();
+            if (records != null&&records.Id!=model.Id)
+                return Json(new AjaxResult { Message = "分类名字已存在!" });
             if (model.Id == 0) model.AddTime = DateTime.Now;
             model.Save();
             return Json(new AjaxResult{Result = true,Message="保存成功"});
+        }
+        [HttpGet]
+        public ActionResult Delete(ArticleClass model)
+        {
+            var result=new AjaxResult();
+            if (model != null)
+            {
+                model.Delete();
+                result.Result = true;
+                result.Message = "删除成功!";
+            }
+            else
+            {
+                result.Message = "查找分类失败,请检查!";
+            }
+            return Json(result,JsonRequestBehavior.AllowGet);
         }
     }
 }

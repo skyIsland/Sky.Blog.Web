@@ -2,39 +2,32 @@
 @{
     ViewBag.Title = "添加/修改分类";
 }
-<blockquote class="layui-elem-quote blog-manage-breadcrumb">
-    <span class="layui-breadcrumb">
-        <a href="@Url.Action("Index","ArticleClass")">分类管理</a>
-        <a><cite>编辑分类</cite></a>
-    </span>
-</blockquote>
-<fieldset class="layui-elem-field layui-field-title">
-    <legend>编辑分类</legend>
-</fieldset>
 
-@using (Html.BeginForm("Save", "ArticleClass", FormMethod.Post, new { @class = "layui-form blog-manage-form" }))
-{
-    @Html.AntiForgeryToken()
-    <input type="hidden" name="Id" value="@Model.Id" />
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+    <legend>文章分类添加</legend>
+</fieldset>
+<form class="layui-form" action="">
     <div class="layui-form-item">
         <label class="layui-form-label">分类名称</label>
         <div class="layui-input-block">
-            <input type="text" name="ClassName" lay-verify="ClassName" autocomplete="off" value="@Model.ClassName" placeholder="请输入分类名称..." class="layui-input">
+            <input type="hidden" name="Id" value="@Model.Id" />   
+            <input type="text" style="width: 90%;"name="ClassName" lay-verify="ClassName" autocomplete="off" value="@Model.ClassName" placeholder="请输入分类名称..." class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">排序值</label>
         <div class="layui-input-block">
-            <input type="number" name="Sort" lay-verify="number" value="@Model.Sort" min="0" autocomplete="off" class="layui-input" />
+            <input type="number" style="width: 90%;" name="Sort" lay-verify="number" value="@Model.Sort" min="0" autocomplete="off" class="layui-input" />
         </div>
-    </div>    
+    </div> 
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button class="layui-btn" lay-submit lay-filter="save">立即保存</button>
+            <button class="layui-btn" lay-submit lay-filter="saves">保存</button>
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
         </div>
-    </div>
-                }
+    </div>  
+</form>
+
 @section scripts{
     <script>
         layui.use(['form', 'layer'], function () {
@@ -50,36 +43,23 @@
                     }
                     if (value.length > 15) {
                         return '名称太长啦，请控制在15个字内';
-                    }
-                    $.ajax({
-                        //async: false, //改为同步请求
-                        url: '@Url.Action("CheckName", "ArticleClass")',
-                        data: {
-                            name: value
-                        },
-                        dataType: 'json',
-                        type: 'get',
-                        success: function (result) {
-                            if (!result.Result)
-                            return result.Message;
-                        }
-                    });
+                    }                                                      
                 }
             });
-            form.on('submit(login)', function(data) {
-                $.post('/Admin/ArticleClass/save', data, function (result) {
+            form.on('submit(saves)', function (data) {
+                $.post('/Admin/ArticleClass/save', data.field, function (result) {
                     if (result.Result) {                        
                         layer.msg(result.Message, { icon: 6 });
                         parent.tables.reload();
-                        layer.closeAll('page');                       
+                        //假设这是iframe页
+                        var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                        parent.layer.close(index); //再执行关闭                                             
                     } else {
                         layer.msg(result.Message, { icon: 5 });
                     }           
                 });
                 return false;
-            });         
-            var $item = $('.layui-nav > .layui-nav-item');
-            $item.removeClass('layui-this').eq(2).addClass('layui-this');
+            });                    
         });
     </script>
 }

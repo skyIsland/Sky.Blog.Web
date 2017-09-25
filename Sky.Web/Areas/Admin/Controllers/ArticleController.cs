@@ -13,6 +13,8 @@ namespace Sky.Web.Areas.Admin.Controllers
         // GET: Admin/Article
         public ActionResult Index()
         {
+            var allClass = ArticleClass.FindAll();
+            ViewBag.AllClass = allClass;
             return View();
         }
         [HttpGet]
@@ -42,7 +44,33 @@ namespace Sky.Web.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Save(Article model)
         {
-            return Json(new AjaxResult());
+            var result = new AjaxResult();
+            if (model.Id == 0)
+            {
+                model.AddTime=DateTime.Now;
+                model.AddUser = CurrSysUser.LoginName;
+            }
+            model.Save();
+            result.Result = true;
+            result.Message = "保存成功";
+            return Json(result);
+        }
+        [HttpGet]
+        public ActionResult Delete(Article model)
+        {
+            var result = new AjaxResult();
+            if (model != null)
+            {
+                model.State = -1;
+                model.Update();
+                result.Result = true;
+                result.Message = "删除成功!";
+            }
+            else
+            {
+                result.Message = "查找不到文章,请检查!";
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
     }
 }

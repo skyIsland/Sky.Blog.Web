@@ -1,6 +1,156 @@
-﻿@model Sky.Models.Article
+﻿@using Sky.Models
+@model Sky.Models.Article
 @{
     ViewBag.Title = "编辑文章";
-    Layout = "~/Areas/Admin/Views/Shared/_Form.cshtml";
-    var categories = ViewBag.Categories as IList<Sky.Models.ArticleClass>;
+    var allClass = ArticleClass.FindAll(); ;
 }
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+    <legend>文章编辑</legend>
+</fieldset>
+<form class="layui-form" action="">
+    <div class="layui-form-item">
+        <label class="layui-form-label">文章分类</label>
+        <div class="layui-input-block">
+            <select name="ArticlassId" required lay-verify="ArticlassId">
+                <option value=""></option>               
+                    @foreach (var item in allClass)
+                    {
+                        <option value="@item.Id" @(item.Id==Model.ArticlassId?"selected":"")>@item.ClassName</option>
+                    }
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">标题</label>
+        <div class="layui-input-block">
+            <input type="hidden"  value="@Model.Id" name="Id">
+            <input type="hidden" value="@Model.State" name="State">
+            <input type="text" style="width: 90%;" value="@Model.Title" name="Title" lay-verify="Title" autocomplete="off" placeholder="这里输入文章的标题，注意啦，别做标题党了..." class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">作者</label>
+        <div class="layui-input-block">
+            <input type="text" style="width: 90%;" value="@Model.Author" name="Author" lay-verify="Author" placeholder="这里输入文章作者哦..." autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    @*<div class="layui-form-item">
+        <label class="layui-form-label">标签</label>
+        <div class="layui-input-block">
+            <input type="text" name="tags" lay-verify="tags" placeholder="这里是输入标签的呢，如果有多个标签的话，就用逗号分割开吧，记得她是英文逗号才有效的呢..." autocomplete="off" class="layui-input">
+        </div>
+    </div>*@
+    @*<div class="layui-form-item">
+        <label class="layui-form-label">浏览量</label>
+        <div class="layui-input-block">
+            <input type="number" name="hits" lay-verify="number" value="0" autocomplete="off" class="layui-input">
+        </div>
+    </div>*@
+    <div class="layui-form-item">
+        <label class="layui-form-label">排序值</label>
+        <div class="layui-input-block">
+            <input type="number"  name="Sort" style="width: 90%;" lay-verify="Sort" value="@Model.Sort" min="0" placeholder="这里输入的数值越高，排序的位置就越前哦.." autocomplete="off" class="layui-input" />
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">置顶</label>
+        <div class="layui-input-block">
+            <input type="checkbox" name="isTop" value="true" @(Model.IsTop?"checked":"") lay-skin="switch" title="置顶" />
+        </div>
+    </div>
+    @*<div class="layui-form-item">
+        <label class="layui-form-label">SEO标题</label>
+        <div class="layui-input-block">
+            <input type="text" name="metaTitle" placeholder="这里写文章的SEO标题..." autocomplete="off" class="layui-input" />
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">SEO关键字</label>
+        <div class="layui-input-block">
+            <input type="text" name="metaKeywords" placeholder="这里写文章的SEO关键字..." autocomplete="off" class="layui-input" />
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">SEO描述</label>
+        <div class="layui-input-block">
+            <input type="text" name="metaDescription" placeholder="这里写文章SEO描述..." autocomplete="off" class="layui-input">
+        </div>
+    </div>*@
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">内容</label>
+        <div class="layui-input-block">
+            @*<input type="hidden" id="Content" name="Content" lay value="@Model.Content">*@
+            <textarea class="layui-textarea layui-hide" required lay-verify="Content" id="Content" name="Content"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button type="submit" lay-submit="" class="layui-btn" id="publish" lay-filter="publish">发布</button>
+            <button type="submit" lay-submit="" class="layui-btn" lay-filter="cg">存草稿</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+
+@section scripts{
+    <script>
+        layui.use(['form', 'layer', 'layedit'], function () {
+            var form = layui.form
+                , layer = layui.layer
+                , layedit = layui.layedit
+                , $ = layui.jquery;
+            //自定义验证规则
+            form.verify({
+                Title: function (value) {
+                    if (value.length < 2) return '标题至少也得2个字符吧';
+                    if (value.length > 50) return '标题写得太多啦，不要超过50个字符好吗？';
+                },
+                ArticlassId: function (value) {
+                    if (value === '') return '请选择分类啦^_^';
+                },
+                Author: function (value) {
+                    if (value === '') return '至少得告诉人家，这篇文章是谁写的吧？';
+                },
+                //tags: function (value) {
+                //    if (value === '') return '给她贴个标签呗，可以用逗号分割哦。';
+                //},
+                Content: function (value) {
+                    if (value === '') return '既然写文章、发博客，总得写点什么吧？';
+                    if (value.length <= 10) return '你写的字数太少啦，起码也得写上10个字符吧。';
+                }
+            });
+            //创建一个编辑器           
+            var editIndex=layedit.build('contents', {
+                height: 300,
+                uploadImage: {
+                    url: '/UploadFile/UploadImage'
+                }
+            });
+            //监听提交
+            form.on('submit(cg)', function (data) {
+                //将状态设置为0
+                $('input[name=State]').val(0);
+                $('#publish').trigger('submit');
+                return false;
+            });
+            form.on('submit(publish)', function (data) {
+                //将状态设置为1
+                $('input[name=State]').val(1);
+                $('input[name=Content]').val(layedit.getContent(editIndex));
+                $.post('Save', data.field, function (result) {
+                    if (result.Result) {
+                        layer.msg(result.Message, { icon: 6 });
+                        parent.tables.reload();
+                        //假设这是iframe页
+                        var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                        parent.layer.close(index); //再执行关闭
+                    } else {
+                        layer.msg(result.Message, { icon: 5 });
+                    }
+                });
+                return false;
+            });            
+        });
+    </script>
+}
+

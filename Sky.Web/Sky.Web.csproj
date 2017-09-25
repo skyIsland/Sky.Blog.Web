@@ -314,7 +314,6 @@
     <Content Include="Scripts\plug\layui\font\iconfont.ttf" />
     <Content Include="Scripts\plug\layui\font\iconfont.woff" />
     <Content Include="Areas\Admin\Views\Article\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\_Form.cshtml" />
     <Content Include="Areas\Admin\Views\ArticleClass\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ArticleClass\Edit.cshtml" />
     <None Include="Properties\PublishProfiles\MyProject.pubxml" />
