@@ -19,7 +19,7 @@
     <!-- 本页样式 -->
     <link href="/Content/css/main.css" rel="stylesheet" />
 </head>
-<body>
+<body class="@(string.IsNullOrEmpty(user.Skip)?"skin-pink":user.Skip)">
     <div class="layui-layout layui-layout-admin">
         <!--顶部-->
         <div class="layui-header">
@@ -52,11 +52,12 @@
                     <li class="layui-nav-item">
                         <a href="javascript:;"><i class="fa fa-file-text"></i>内容管理</a>
                         <dl class="layui-nav-child">
-                            <dd><a href="javascript:;" data-url="/Admin/Article/Index" data-id="1">文章管理</a></dd>
-                            <dd><a href="javascript:;" data-url="/Admin/Home/DataList" data-id="2">资源管理</a></dd>
-                            <dd><a href="javascript:;" data-url="/Admin/Home/DataList" data-id="3">时光轴管理</a></dd>
+                            <dd><a href="javascript:;" data-url="/Admin/ArticleClass/Index" data-id="1">分类管理</a></dd>
+                            <dd><a href="javascript:;" data-url="/Admin/Article/Index" data-id="2">文章管理</a></dd>
+                            <dd><a href="javascript:;" data-url="/Admin/Home/DataList" data-id="3">资源管理</a></dd>
+                            <dd><a href="javascript:;" data-url="/Admin/Home/DataList" data-id="4">时光轴管理</a></dd>
                             <dd><a href="javascript:;">笔记本管理</a></dd>
-                            <dd><a href="javascript:;" data-url="/Admin/Home/DataList" data-id="4">文章回收站</a></dd>
+                            <dd><a href="javascript:;" data-url="/Admin/Home/DataList" data-id="5">文章回收站</a></dd>
                             <dd><a href="javascript:;">资源回收站</a></dd>
                         </dl>
                     </li>

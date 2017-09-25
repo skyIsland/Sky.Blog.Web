@@ -1,0 +1,87 @@
+﻿@model Sky.Models.ArticleClass
+@{
+    ViewBag.Title = "添加/修改分类";
+}
+<blockquote class="layui-elem-quote blog-manage-breadcrumb">
+    <span class="layui-breadcrumb">
+        <a href="@Url.Action("Index","ArticleClass")">分类管理</a>
+        <a><cite>编辑分类</cite></a>
+    </span>
+</blockquote>
+<fieldset class="layui-elem-field layui-field-title">
+    <legend>编辑分类</legend>
+</fieldset>
+
+@using (Html.BeginForm("Save", "ArticleClass", FormMethod.Post, new { @class = "layui-form blog-manage-form" }))
+{
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="Id" value="@Model.Id" />
+    <div class="layui-form-item">
+        <label class="layui-form-label">分类名称</label>
+        <div class="layui-input-block">
+            <input type="text" name="ClassName" lay-verify="ClassName" autocomplete="off" value="@Model.ClassName" placeholder="请输入分类名称..." class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">排序值</label>
+        <div class="layui-input-block">
+            <input type="number" name="Sort" lay-verify="number" value="@Model.Sort" min="0" autocomplete="off" class="layui-input" />
+        </div>
+    </div>    
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="save">立即保存</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+                }
+@section scripts{
+    <script>
+        layui.use(['form', 'layer'], function () {
+            var form = layui.form
+            , layer = layui.layer
+            , $ = layui.jquery;
+
+            //自定义验证规则
+            form.verify({
+                ClassName: function (value) {
+                    if (value === '') {
+                        return '分类名称不能为空！';
+                    }
+                    if (value.length > 15) {
+                        return '名称太长啦，请控制在15个字内';
+                    }
+                    $.ajax({
+                        //async: false, //改为同步请求
+                        url: '@Url.Action("CheckName", "ArticleClass")',
+                        data: {
+                            name: value
+                        },
+                        dataType: 'json',
+                        type: 'get',
+                        success: function (result) {
+                            if (!result.Result)
+                            return result.Message;
+                        }
+                    });
+                }
+            });
+            form.on('submit(login)', function(data) {
+                $.post('/Admin/ArticleClass/save', data, function (result) {
+                    if (result.Result) {                        
+                        layer.msg(result.Message, { icon: 6 });
+                        parent.tables.reload();
+                        layer.closeAll('page');                       
+                    } else {
+                        layer.msg(result.Message, { icon: 5 });
+                    }           
+                });
+                return false;
+            });         
+            var $item = $('.layui-nav > .layui-nav-item');
+            $item.removeClass('layui-this').eq(2).addClass('layui-this');
+        });
+    </script>
+}
+
+

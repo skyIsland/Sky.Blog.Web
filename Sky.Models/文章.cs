@@ -71,13 +71,21 @@ namespace Sky.Models
         [BindColumn("IsRecommend", "是否推荐", "bit")]
         public Boolean IsRecommend { get { return _IsRecommend; } set { if (OnPropertyChanging(__.IsRecommend, value)) { _IsRecommend = value; OnPropertyChanged(__.IsRecommend); } } }
 
-        private Boolean _IsDelete;
-        /// <summary>是否删除</summary>
-        [DisplayName("是否删除")]
-        [Description("是否删除")]
+        private Int32 _State;
+        /// <summary>状态-1删除0草稿1发布</summary>
+        [DisplayName("状态-1删除0草稿1发布")]
+        [Description("状态-1删除0草稿1发布")]
         [DataObjectField(false, false, false, 0)]
-        [BindColumn("IsDelete", "是否删除", "bit")]
-        public Boolean IsDelete { get { return _IsDelete; } set { if (OnPropertyChanging(__.IsDelete, value)) { _IsDelete = value; OnPropertyChanged(__.IsDelete); } } }
+        [BindColumn("State", "状态-1删除0草稿1发布", "int")]
+        public Int32 State { get { return _State; } set { if (OnPropertyChanging(__.State, value)) { _State = value; OnPropertyChanged(__.State); } } }
+
+        private Int32 _Sort;
+        /// <summary>排序</summary>
+        [DisplayName("排序")]
+        [Description("排序")]
+        [DataObjectField(false, false, false, 0)]
+        [BindColumn("Sort", "排序", "int")]
+        public Int32 Sort { get { return _Sort; } set { if (OnPropertyChanging(__.Sort, value)) { _Sort = value; OnPropertyChanged(__.Sort); } } }
 
         private DateTime _AddTime;
         /// <summary>添加时间</summary>
@@ -121,7 +129,8 @@ namespace Sky.Models
                     case __.Content : return _Content;
                     case __.IsTop : return _IsTop;
                     case __.IsRecommend : return _IsRecommend;
-                    case __.IsDelete : return _IsDelete;
+                    case __.State : return _State;
+                    case __.Sort : return _Sort;
                     case __.AddTime : return _AddTime;
                     case __.EditTime : return _EditTime;
                     case __.AddUser : return _AddUser;
@@ -139,7 +148,8 @@ namespace Sky.Models
                     case __.Content : _Content = Convert.ToString(value); break;
                     case __.IsTop : _IsTop = Convert.ToBoolean(value); break;
                     case __.IsRecommend : _IsRecommend = Convert.ToBoolean(value); break;
-                    case __.IsDelete : _IsDelete = Convert.ToBoolean(value); break;
+                    case __.State : _State = Convert.ToInt32(value); break;
+                    case __.Sort : _Sort = Convert.ToInt32(value); break;
                     case __.AddTime : _AddTime = Convert.ToDateTime(value); break;
                     case __.EditTime : _EditTime = Convert.ToDateTime(value); break;
                     case __.AddUser : _AddUser = Convert.ToString(value); break;
@@ -174,8 +184,11 @@ namespace Sky.Models
             /// <summary>是否推荐</summary>
             public static readonly Field IsRecommend = FindByName(__.IsRecommend);
 
-            /// <summary>是否删除</summary>
-            public static readonly Field IsDelete = FindByName(__.IsDelete);
+            /// <summary>状态-1删除0草稿1发布</summary>
+            public static readonly Field State = FindByName(__.State);
+
+            /// <summary>排序</summary>
+            public static readonly Field Sort = FindByName(__.Sort);
 
             /// <summary>添加时间</summary>
             public static readonly Field AddTime = FindByName(__.AddTime);
@@ -213,8 +226,11 @@ namespace Sky.Models
             /// <summary>是否推荐</summary>
             public const String IsRecommend = "IsRecommend";
 
-            /// <summary>是否删除</summary>
-            public const String IsDelete = "IsDelete";
+            /// <summary>状态-1删除0草稿1发布</summary>
+            public const String State = "State";
+
+            /// <summary>排序</summary>
+            public const String Sort = "Sort";
 
             /// <summary>添加时间</summary>
             public const String AddTime = "AddTime";
@@ -253,8 +269,11 @@ namespace Sky.Models
         /// <summary>是否推荐</summary>
         Boolean IsRecommend { get; set; }
 
-        /// <summary>是否删除</summary>
-        Boolean IsDelete { get; set; }
+        /// <summary>状态-1删除0草稿1发布</summary>
+        Int32 State { get; set; }
+
+        /// <summary>排序</summary>
+        Int32 Sort { get; set; }
 
         /// <summary>添加时间</summary>
         DateTime AddTime { get; set; }

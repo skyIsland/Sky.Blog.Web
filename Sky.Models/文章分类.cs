@@ -52,7 +52,7 @@ namespace Sky.Models
         [DisplayName("父级Ids")]
         [Description("父级Ids")]
         [DataObjectField(false, false, true, 50)]
-        [BindColumn("ParentId", "父级Ids", "nvarchar(50)")]
+        [BindColumn("ParentIds", "父级Ids", "nvarchar(50)")]
         public String ParentIds { get { return _ParentIds; } set { if (OnPropertyChanging(__.ParentIds, value)) { _ParentIds = value; OnPropertyChanged(__.ParentIds); } } }
 
         private Int32 _Sort;

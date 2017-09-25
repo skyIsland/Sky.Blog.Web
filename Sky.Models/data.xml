@@ -9,6 +9,7 @@
       <Column Name="AddTime" DataType="DateTime" Description="添加时间" />
       <Column Name="LastLoginTime" DataType="DateTime" Description="上次登录时间" />
       <Column Name="LastLoginIp" DataType="String" Description="上次登录Ip" />
+      <Column Name="Skip" DataType="String" Description="默认皮肤" />
       <Column Name="LoginCount" DataType="Int32" Nullable="True" Description="登录次数" />
     </Columns>
   </Table>
@@ -32,7 +33,8 @@
       <Column Name="Content" DataType="String" Master="True" Length="500" Description="文章内容" />
       <Column Name="IsTop" DataType="Boolean" Description="是否置顶" />
       <Column Name="IsRecommend" DataType="Boolean" Description="是否推荐" />
-      <Column Name="IsDelete" DataType="Boolean" Description="是否删除" />
+      <Column Name="State" DataType="Int32" Description="状态-1删除0草稿1发布" />
+      <Column Name="Sort" DataType="Int32" Description="排序" />
       <Column Name="AddTime" DataType="DateTime" Description="添加时间" />
       <Column Name="EditTime" DataType="DateTime" Description="编辑时间" />
       <Column Name="AddUser" DataType="String" Description="添加人" />

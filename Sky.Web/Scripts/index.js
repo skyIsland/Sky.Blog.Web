@@ -25,11 +25,16 @@
     //监听登陆提交
     form.on('submit(login)', function (data) {
         $.post('/Admin/Login/Login', { loginName: data.field.account, loginPwd: data.field.password }, function (result) {
-            layer.msg(result.Message, function () {
-                if (result.Result) {
+            if (result.Result) {
+                layer.msg('登陆成功，正在跳转......', { icon: 6 });
+                layer.closeAll('page');
+                setTimeout(function() {
                     location.href = '/Admin/Home/Main';
-                }
-            });
+                    },
+                    1000);
+            } else {
+                layer.msg(result.Message, { icon: 5 });
+            }           
         });
         //var index = layer.load(1);
         //setTimeout(function () {
@@ -67,7 +72,7 @@
         loginHtml += '<div class="layui-form-item">';
         loginHtml += '<label class="layui-form-label">账号</label>';
         loginHtml += '<div class="layui-input-inline pm-login-input">';
-        loginHtml += '<input type="text" name="account" lay-verify="account" placeholder="请输入账号" value="lyblogscn" autocomplete="off" class="layui-input">';
+        loginHtml += '<input type="text" name="account" lay-verify="account" placeholder="请输入账号" value="sdm" autocomplete="off" class="layui-input">';
         loginHtml += '</div>';
         loginHtml += '</div>';
         loginHtml += '<div class="layui-form-item">';

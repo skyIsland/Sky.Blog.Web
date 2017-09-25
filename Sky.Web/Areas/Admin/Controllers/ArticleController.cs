@@ -18,7 +18,7 @@ namespace Sky.Web.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult GetDataList(string keyword, int pageNo, int pageSize)
         {
-            var exp = Article._.IsDelete == false;
+            var exp = Article._.State == 1;
             var count = Article.FindCount(exp);
             var data = Article.FindAll(exp, Article._.Id, null, (pageNo - 1) * pageSize, pageSize);
             var result = new DataResult

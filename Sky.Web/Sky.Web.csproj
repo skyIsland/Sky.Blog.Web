@@ -102,7 +102,7 @@
     <Content Include="Content\css\prettify.css" />
     <Content Include="Content\css\resource.css" />
     <Content Include="Content\css\timeline.css" />
-    <Content Include="Content\images\Absolutely.jpg" />
+    <Content Include="Content\images\ShaDaMeng.jpg" />
     <Content Include="Content\images\background.jpg" />
     <Content Include="Content\images\cover\201703051349045432.jpg" />
     <Content Include="Content\images\cover\201703051847567306.jpg" />
@@ -315,6 +315,8 @@
     <Content Include="Scripts\plug\layui\font\iconfont.woff" />
     <Content Include="Areas\Admin\Views\Article\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Form.cshtml" />
+    <Content Include="Areas\Admin\Views\ArticleClass\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ArticleClass\Edit.cshtml" />
     <None Include="Properties\PublishProfiles\MyProject.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -326,7 +328,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Admin\Views\ArticleClass\" />
     <Folder Include="Areas\Admin\Views\Base\" />
     <Folder Include="Models\" />
   </ItemGroup>

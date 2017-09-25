@@ -71,6 +71,14 @@ namespace Sky.Models
         [BindColumn("LastLoginIp", "上次登录Ip", "nvarchar(50)")]
         public String LastLoginIp { get { return _LastLoginIp; } set { if (OnPropertyChanging(__.LastLoginIp, value)) { _LastLoginIp = value; OnPropertyChanged(__.LastLoginIp); } } }
 
+        private String _Skip;
+        /// <summary>默认皮肤</summary>
+        [DisplayName("默认皮肤")]
+        [Description("默认皮肤")]
+        [DataObjectField(false, false, true, 50)]
+        [BindColumn("Skip", "默认皮肤", "nvarchar(50)")]
+        public String Skip { get { return _Skip; } set { if (OnPropertyChanging(__.Skip, value)) { _Skip = value; OnPropertyChanged(__.Skip); } } }
+
         private Int32 _LoginCount;
         /// <summary>登录次数</summary>
         [DisplayName("登录次数")]
@@ -97,6 +105,7 @@ namespace Sky.Models
                     case __.AddTime : return _AddTime;
                     case __.LastLoginTime : return _LastLoginTime;
                     case __.LastLoginIp : return _LastLoginIp;
+                    case __.Skip : return _Skip;
                     case __.LoginCount : return _LoginCount;
                     default: return base[name];
                 }
@@ -112,6 +121,7 @@ namespace Sky.Models
                     case __.AddTime : _AddTime = Convert.ToDateTime(value); break;
                     case __.LastLoginTime : _LastLoginTime = Convert.ToDateTime(value); break;
                     case __.LastLoginIp : _LastLoginIp = Convert.ToString(value); break;
+                    case __.Skip : _Skip = Convert.ToString(value); break;
                     case __.LoginCount : _LoginCount = Convert.ToInt32(value); break;
                     default: base[name] = value; break;
                 }
@@ -144,6 +154,9 @@ namespace Sky.Models
             /// <summary>上次登录Ip</summary>
             public static readonly Field LastLoginIp = FindByName(__.LastLoginIp);
 
+            /// <summary>默认皮肤</summary>
+            public static readonly Field Skip = FindByName(__.Skip);
+
             /// <summary>登录次数</summary>
             public static readonly Field LoginCount = FindByName(__.LoginCount);
 
@@ -173,6 +186,9 @@ namespace Sky.Models
 
             /// <summary>上次登录Ip</summary>
             public const String LastLoginIp = "LastLoginIp";
+
+            /// <summary>默认皮肤</summary>
+            public const String Skip = "Skip";
 
             /// <summary>登录次数</summary>
             public const String LoginCount = "LoginCount";
@@ -204,6 +220,9 @@ namespace Sky.Models
 
         /// <summary>上次登录Ip</summary>
         String LastLoginIp { get; set; }
+
+        /// <summary>默认皮肤</summary>
+        String Skip { get; set; }
 
         /// <summary>登录次数</summary>
         Int32 LoginCount { get; set; }

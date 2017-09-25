@@ -57,7 +57,7 @@
     //    //模拟数据
     //    var data = new Array();
     //    for (var i = 0; i < 30; i++) {
-    //        data.push({ id: i + 1, time: '2017-3-26 15:56', title: '不落阁后台模板源码分享', author: 'Absolutely', category: 'Web前端' });
+    //        data.push({ id: i + 1, time: '2017-3-26 15:56', title: '不落阁后台模板源码分享', author: 'ShaDaMeng', category: 'Web前端' });
     //    }
     //    //模拟数据加载
     //    setTimeout(function () {
