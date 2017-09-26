@@ -52,9 +52,9 @@
         <form class="layui-form" action="">
             <div class="layui-form-item" style="margin:0;">
                 {{#  if(d.IsTop){ }}
-                   <input type="checkbox" name="top" title="置顶" lay-filter="top" checked disabled>
+                   <input type="checkbox" name="top" title="置顶" lay-filter="top" checked >
                 {{#  } else { }}
-                   <input type="checkbox" name="top" title="置顶" lay-filter="top" disabled>
+                   <input type="checkbox" name="top" title="置顶" lay-filter="top" >
                 {{#  } }}
                
             </div>
@@ -63,10 +63,10 @@
     <script type="text/html" id="IsRecommendTpl">
         <form class="layui-form" action="">
             <div class="layui-form-item" style="margin:0;">
-                {{#  if(d.IsTop){ }}
-                <input type="checkbox" name="top" title="推荐" lay-filter="recommend" checked disabled>
+                {{#  if(d.IsRecommend){ }}
+                <input type="checkbox" name="top" title="推荐" lay-filter="recommend" checked >
                 {{#  } else { }}
-                <input type="checkbox" name="top" title="推荐" lay-filter="recommend" disabled>
+                <input type="checkbox" name="top" title="推荐" lay-filter="recommend" >
                 {{#  } }}
             </div>
         </form>    

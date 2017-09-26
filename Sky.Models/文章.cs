@@ -51,7 +51,7 @@ namespace Sky.Models
         /// <summary>文章内容</summary>
         [DisplayName("文章内容")]
         [Description("文章内容")]
-        [DataObjectField(false, false, true, 1073741823)]
+        [DataObjectField(false, false, true, -1)]
         [BindColumn("Content", "文章内容", "ntext", Master = true)]
         public String Content { get { return _Content; } set { if (OnPropertyChanging(__.Content, value)) { _Content = value; OnPropertyChanged(__.Content); } } }
 
@@ -99,8 +99,8 @@ namespace Sky.Models
         /// <summary>封面图片路径</summary>
         [DisplayName("封面图片路径")]
         [Description("封面图片路径")]
-        [DataObjectField(false, false, true, 50)]
-        [BindColumn("PhotoUrl", "封面图片路径", "nvarchar(50)")]
+        [DataObjectField(false, false, true, 500)]
+        [BindColumn("PhotoUrl", "封面图片路径", "nvarchar(500)")]
         public String PhotoUrl { get { return _PhotoUrl; } set { if (OnPropertyChanging(__.PhotoUrl, value)) { _PhotoUrl = value; OnPropertyChanged(__.PhotoUrl); } } }
 
         private String _Introduce;

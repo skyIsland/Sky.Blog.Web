@@ -22,7 +22,7 @@ namespace Sky.Web.Areas.Admin.Controllers
         {
             var exp = Article._.State>=0;
             var count = Article.FindCount(exp);
-            var data = Article.FindAll(exp, Article._.Id, null, (pageNo - 1) * pageSize, pageSize);
+            var data = Article.FindAll(exp, Article._.EditTime+" desc ,"+Article._.Id+" desc", null, (pageNo - 1) * pageSize, pageSize);
             var result = new DataResult
             {
                 Result = true,

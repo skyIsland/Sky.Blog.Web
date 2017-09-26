@@ -48,7 +48,7 @@ layui.define(['table', 'form'], function (exports) {
                 field: 'IsRecommend', aligh: 'center', title: '推荐', templet: '#IsRecommendTpl', width: 100
             },
             {
-                title:"操作",aligh:'center', width: 100, toolbar: '#barDemo'
+                title:"操作",aligh:'center', width: 150, toolbar: '#barDemo'
             }
         ]]
     });  

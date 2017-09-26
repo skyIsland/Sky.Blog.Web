@@ -64,6 +64,22 @@
             <input type="checkbox" name="isTop" value="true" @(Model.IsTop?"checked":"") lay-skin="switch" title="置顶" />
         </div>
     </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">推荐</label>
+        <div class="layui-input-block">
+            <input type="checkbox" name="IsRecommend" value="true" @(Model.IsRecommend?"checked":"") lay-skin="switch" title="推荐" />
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">封面图片</label>
+        <div class="layui-input-block">
+            @Html.TextBoxFor(p=>p.PhotoUrl,new {type="hidden"})
+            <button type="button" class="layui-btn" id="test1">
+                <i class="layui-icon">&#xe67c;</i>上传图片
+            </button>
+            <img src="@Model.PhotoUrl" id="showImg" style="width: 185px;height: 98px"/>
+        </div>
+    </div>
     @*<div class="layui-form-item">
         <label class="layui-form-label">SEO标题</label>
         <div class="layui-input-block">
@@ -99,16 +115,35 @@
 
 @section scripts{
     <script>
-        layui.use(['form', 'layer', 'jquery','layedit'], function () {
-            var form = layui.form
-                , layer = layui.layer
-                , layedit = layui.layedit
-                , $ = layui.jquery;
+        layui.use(['form', 'layer', 'jquery','layedit','upload'], function () {
+            var form = layui.form,
+                layer = layui.layer,
+                layedit = layui.layedit,
+                $ = layui.jquery,
+                upload = layui.upload;
+            
+            //封面图片
+            //执行实例
+            var uploadInst = upload.render({
+                elem: '#test1' //绑定元素
+                , url: '/UploadFile/SaveFiles' //上传接口
+                , done: function (res) {
+                    //上传完毕回调
+                    if (res.code === 0) {
+                        $('#showImg').attr('src', res.data.src);
+                        $('#PhotoUrl').val(res.data.src);
+                    }
+                }
+                , error: function (result) {
+                    //请求异常回调
+                    layer.msg(result.Message);
+                }
+            });
             //创建一个编辑器           
             var editIndex = layedit.build('Content', {
                 height: 300,
                 uploadImage: {
-                    url: '/UploadFiles/UploadImage'
+                    url: '/UploadFile/SaveFiles?isCut=true'
                 }
             });
             //自定义验证规则

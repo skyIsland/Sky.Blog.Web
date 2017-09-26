@@ -36,11 +36,35 @@
       <Column Name="State" DataType="Int32" Description="状态-1删除0草稿1发布" />
       <Column Name="Sort" DataType="Int32" Description="排序" />
       <Column Name="Hits" DataType="Int32" Description="点击数" />
-      <Column Name="PhotoUrl" DataType="String" Description="封面图片路径" />
+      <Column Name="PhotoUrl" DataType="String" Length="500" Description="封面图片路径" />
       <Column Name="Introduce" DataType="String" Length="100" Description="文章介绍" />
       <Column Name="AddTime" DataType="DateTime" Description="添加时间" />
       <Column Name="EditTime" DataType="DateTime" Description="编辑时间" />
       <Column Name="AddUser" DataType="String" Description="添加人" />
+    </Columns>
+  </Table>
+  <Table Name="FilesInfo" Description="文件基础信息" DbType="SqlServer">
+    <Columns>
+      <Column Name="ID" DataType="Int32" Identity="True" PrimaryKey="True" />
+      <Column Name="FileName" DataType="String" Length="255" Description="文件名称" />
+      <Column Name="FileSize" DataType="String" Length="255" Description="文件大小" />
+      <Column Name="FileType" DataType="String" Length="255" Description="文件类型" />
+      <Column Name="FileExt" DataType="String" Length="255" Description="文件后缀名" />
+      <Column Name="FilePath" DataType="String" Length="255" Description="存储路径" />
+      <Column Name="IsImg" DataType="Boolean" Description="是否图片" />
+      <Column Name="FileContent" RawType="image" Nullable="True" Description="文件内容" />
+      <Column Name="bytHash" DataType="String" Length="255" Description="文件MD5值" />
+      <Column Name="CreatBy" DataType="String" Length="255" Description="添加人" />
+      <Column Name="CreateDate" DataType="DateTime" Description="添加时间" />
+    </Columns>
+  </Table>
+  <Table Name="UploadFiles" Description="文件上传关联对象信息" DbType="SqlServer">
+    <Columns>
+      <Column Name="Id" DataType="Guid" RawType="uniqueidentifier" PrimaryKey="True" />
+      <Column Name="CreatBy" DataType="String" Length="255" Description="添加人" />
+      <Column Name="CreateDate" DataType="DateTime" Description="添加时间" />
+      <Column Name="FilesInfoID" DataType="Int32" Description="关联的FilesInfo对象ID" />
+      <Column Name="Hits" DataType="Int32" Description="点击次数" />
     </Columns>
   </Table>
 </Tables>
