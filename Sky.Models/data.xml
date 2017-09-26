@@ -30,7 +30,7 @@
       <Column Name="ArticlassId" DataType="Int32" Master="True" Description="文章分类ID" />
       <Column Name="Title" DataType="String" Master="True" Description="标题" />
       <Column Name="Author" DataType="String" Master="True" Description="作者" />
-      <Column Name="Content" DataType="String" Master="True" Length="500" Description="文章内容" />
+      <Column Name="Content" DataType="String" Master="True" Length="-1" Description="文章内容" />
       <Column Name="IsTop" DataType="Boolean" Description="是否置顶" />
       <Column Name="IsRecommend" DataType="Boolean" Description="是否推荐" />
       <Column Name="State" DataType="Int32" Description="状态-1删除0草稿1发布" />

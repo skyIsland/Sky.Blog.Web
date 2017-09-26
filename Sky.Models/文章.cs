@@ -51,8 +51,8 @@ namespace Sky.Models
         /// <summary>文章内容</summary>
         [DisplayName("文章内容")]
         [Description("文章内容")]
-        [DataObjectField(false, false, true, 500)]
-        [BindColumn("Content", "文章内容", "nvarchar(500)", Master = true)]
+        [DataObjectField(false, false, true, 1073741823)]
+        [BindColumn("Content", "文章内容", "ntext", Master = true)]
         public String Content { get { return _Content; } set { if (OnPropertyChanging(__.Content, value)) { _Content = value; OnPropertyChanged(__.Content); } } }
 
         private Boolean _IsTop;

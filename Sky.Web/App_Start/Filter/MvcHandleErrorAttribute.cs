@@ -29,7 +29,7 @@ namespace Sky.Web.Filter
             {
                 var result = new JsonResult
                 {
-                    Data = new AjaxResult { Result = false, Message = context.Exception.Message },
+                    Data = new AjaxResult { Result = false, Message = "服务器发生错误,请联系管理员!" },
                     ContentEncoding = System.Text.Encoding.UTF8,
                     ContentType = "text/plain"
                 };
