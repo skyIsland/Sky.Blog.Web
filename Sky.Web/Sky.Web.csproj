@@ -99,9 +99,12 @@
     <Content Include="Content\css\home.css" />
     <Content Include="Content\css\index.css" />
     <Content Include="Content\css\main.css" />
+    <Content Include="Content\css\pintuer.css" />
     <Content Include="Content\css\prettify.css" />
     <Content Include="Content\css\resource.css" />
     <Content Include="Content\css\timeline.css" />
+    <Content Include="Content\images\ds-1.gif" />
+    <Content Include="Content\images\ds-2.png" />
     <Content Include="Content\images\ShaDaMeng.jpg" />
     <Content Include="Content\images\background.jpg" />
     <Content Include="Content\images\cover\201703051349045432.jpg" />
@@ -252,6 +255,7 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Common\EntityModelBinder.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -317,6 +321,8 @@
     <Content Include="Areas\Admin\Views\ArticleClass\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ArticleClass\Edit.cshtml" />
     <None Include="Properties\PublishProfiles\MyProject.pubxml" />
+    <Content Include="Views\Error\Error500.cshtml" />
+    <Content Include="Views\Error\Error404.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

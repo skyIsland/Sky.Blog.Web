@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Sky.Common.Web;
 using Sky.Models;
+using XCode;
 
 namespace Sky.Web.Areas.Admin.Controllers
 {
@@ -56,9 +57,22 @@ namespace Sky.Web.Areas.Admin.Controllers
             var result=new AjaxResult();
             if (model != null)
             {
-                model.Delete();
-                result.Result = true;
-                result.Message = "删除成功!";
+                ArticleClass.Meta.BeginTrans();
+                try
+                {
+                    var allArticle = Article.FindAll(Article._.ArticlassId == model.Id);
+                    allArticle.Delete();
+                    model.Delete();
+                    result.Result = true;
+                    result.Message = "删除成功!";
+                    ArticleClass.Meta.Commit();
+                }
+                catch (Exception ex)
+                {
+                    ArticleClass.Meta.Rollback();
+                    NewLife.Log.XTrace.Log.Error("删除分类和分类下的文章出错,原因:"+ex.Message);
+                }
+              
             }
             else
             {

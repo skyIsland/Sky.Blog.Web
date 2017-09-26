@@ -35,6 +35,9 @@
       <Column Name="IsRecommend" DataType="Boolean" Description="是否推荐" />
       <Column Name="State" DataType="Int32" Description="状态-1删除0草稿1发布" />
       <Column Name="Sort" DataType="Int32" Description="排序" />
+      <Column Name="Hits" DataType="Int32" Description="点击数" />
+      <Column Name="PhotoUrl" DataType="String" Description="封面图片路径" />
+      <Column Name="Introduce" DataType="String" Length="100" Description="文章介绍" />
       <Column Name="AddTime" DataType="DateTime" Description="添加时间" />
       <Column Name="EditTime" DataType="DateTime" Description="编辑时间" />
       <Column Name="AddUser" DataType="String" Description="添加人" />

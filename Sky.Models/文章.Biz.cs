@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using XCode;
 
 namespace Sky.Models
@@ -75,6 +77,34 @@ namespace Sky.Models
         #endregion
 
         #region 扩展查询
+        /// <summary>
+        /// 作者推荐
+        /// </summary>
+        /// <param name="size"></param>
+        /// <returns></returns>
+        public static List<Article> FindRecommend(int size) =>FindAll(_.IsRecommend == true & _.State == 1, "Id desc", null, 0, size).ToList();
+        /// <summary>
+        /// 随便看看
+        /// </summary>
+        /// <param name="size"></param>
+        /// <returns></returns>
+        public static List<Article> FindRandom(int size)
+        {
+            var s = FindAll(_.State == 1, "Id desc", null, 0, 0);
+            var list=new List<Article>();
+            var count = s.Count;
+            for (int i = 0; i < size; i++)
+            {
+                if (i <= count - 1)
+                {
+                    var rnd = new Random().Next(count);
+                    var item = s[rnd];                   
+                    if(list.Contains(item))
+                        list.Add(s[i]);
+                }
+            }
+            return list;
+        }
 
         #endregion
 

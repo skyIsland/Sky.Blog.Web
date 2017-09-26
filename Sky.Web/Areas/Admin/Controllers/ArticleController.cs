@@ -20,7 +20,7 @@ namespace Sky.Web.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult GetDataList(string keyword, int pageNo, int pageSize)
         {
-            var exp = Article._.State == 1;
+            var exp = Article._.State>=0;
             var count = Article.FindCount(exp);
             var data = Article.FindAll(exp, Article._.Id, null, (pageNo - 1) * pageSize, pageSize);
             var result = new DataResult
@@ -42,6 +42,7 @@ namespace Sky.Web.Areas.Admin.Controllers
             return View(model);
         }
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Save(Article model)
         {
             var result = new AjaxResult();
@@ -50,6 +51,7 @@ namespace Sky.Web.Areas.Admin.Controllers
                 model.AddTime=DateTime.Now;
                 model.AddUser = CurrSysUser.LoginName;
             }
+            model.EditTime=DateTime.Now;
             model.Save();
             result.Result = true;
             result.Message = "保存成功";

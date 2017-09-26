@@ -11,7 +11,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">文章分类</label>
         <div class="layui-input-block">
-            <select name="ArticlassId" required lay-verify="ArticlassId">
+            <select name="ArticlassId" required lay-verify="ArticlassId" style="width: 90%;">
                 <option value=""></option>               
                     @foreach (var item in allClass)
                     {
@@ -24,7 +24,7 @@
         <label class="layui-form-label">标题</label>
         <div class="layui-input-block">
             <input type="hidden"  value="@Model.Id" name="Id">
-            <input type="hidden" value="@Model.State" name="State">
+            <input type="hidden" value="@Model.State" name="State" lay-verify="State">
             <input type="text" style="width: 90%;" value="@Model.Title" name="Title" lay-verify="Title" autocomplete="off" placeholder="这里输入文章的标题，注意啦，别做标题党了..." class="layui-input">
         </div>
     </div>
@@ -32,6 +32,12 @@
         <label class="layui-form-label">作者</label>
         <div class="layui-input-block">
             <input type="text" style="width: 90%;" value="@Model.Author" name="Author" lay-verify="Author" placeholder="这里输入文章作者哦..." autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">介绍</label>
+        <div class="layui-input-block">
+            <input type="text"  name="Introduce" style="width: 90%;" lay-verify="Introduce" value="@Model.Introduce"  placeholder="这里输入文章介绍哦.." autocomplete="off" class="layui-input" />
         </div>
     </div>
     @*<div class="layui-form-item">
@@ -79,8 +85,7 @@
     <div class="layui-form-item layui-form-text">
         <label class="layui-form-label">内容</label>
         <div class="layui-input-block">
-            @*<input type="hidden" id="Content" name="Content" lay value="@Model.Content">*@
-            <textarea class="layui-textarea layui-hide" required lay-verify="Content" id="Content" name="Content"></textarea>
+            <textarea class="layui-textarea layui-hide" required lay-verify="Content" id="Content" name="Content" style="display: none;">@Model.Content</textarea>
         </div>
     </div>
     <div class="layui-form-item">
@@ -94,7 +99,7 @@
 
 @section scripts{
     <script>
-        layui.use(['form', 'layer', 'layedit'], function () {
+        layui.use(['form', 'layer', 'jquery','layedit'], function () {
             var form = layui.form
                 , layer = layui.layer
                 , layedit = layui.layedit
@@ -114,30 +119,30 @@
                 //tags: function (value) {
                 //    if (value === '') return '给她贴个标签呗，可以用逗号分割哦。';
                 //},
-                Content: function (value) {
-                    if (value === '') return '既然写文章、发博客，总得写点什么吧？';
-                    if (value.length <= 10) return '你写的字数太少啦，起码也得写上10个字符吧。';
-                }
+                //Content: function (value) {
+                //    if (value === '') return '既然写文章、发博客，总得写点什么吧？';
+                //    if (value.length <= 10) return '你写的字数太少啦，起码也得写上10个字符吧。';
+                //}
             });
             //创建一个编辑器           
-            var editIndex=layedit.build('contents', {
+            var editIndex = layedit.build('Content', {
                 height: 300,
-                uploadImage: {
-                    url: '/UploadFile/UploadImage'
-                }
+                //uploadImage: {
+                //    url: '/UploadFile/UploadImage'
+                //}
             });
             //监听提交
             form.on('submit(cg)', function (data) {
                 //将状态设置为0
                 $('input[name=State]').val(0);
-                $('#publish').trigger('submit');
+                $('#publish').trigger('click');
                 return false;
             });
             form.on('submit(publish)', function (data) {
                 //将状态设置为1
-                $('input[name=State]').val(1);
-                $('input[name=Content]').val(layedit.getContent(editIndex));
-                $.post('Save', data.field, function (result) {
+                data.field.State = 1;
+                layedit.sync(editIndex);
+                $.post('/Admin/Article/Save', data.field, function (result) {
                     if (result.Result) {
                         layer.msg(result.Message, { icon: 6 });
                         parent.tables.reload();

@@ -87,6 +87,30 @@ namespace Sky.Models
         [BindColumn("Sort", "排序", "int")]
         public Int32 Sort { get { return _Sort; } set { if (OnPropertyChanging(__.Sort, value)) { _Sort = value; OnPropertyChanged(__.Sort); } } }
 
+        private Int32 _Hits;
+        /// <summary>点击数</summary>
+        [DisplayName("点击数")]
+        [Description("点击数")]
+        [DataObjectField(false, false, false, 0)]
+        [BindColumn("Hits", "点击数", "int")]
+        public Int32 Hits { get { return _Hits; } set { if (OnPropertyChanging(__.Hits, value)) { _Hits = value; OnPropertyChanged(__.Hits); } } }
+
+        private String _PhotoUrl;
+        /// <summary>封面图片路径</summary>
+        [DisplayName("封面图片路径")]
+        [Description("封面图片路径")]
+        [DataObjectField(false, false, true, 50)]
+        [BindColumn("PhotoUrl", "封面图片路径", "nvarchar(50)")]
+        public String PhotoUrl { get { return _PhotoUrl; } set { if (OnPropertyChanging(__.PhotoUrl, value)) { _PhotoUrl = value; OnPropertyChanged(__.PhotoUrl); } } }
+
+        private String _Introduce;
+        /// <summary>文章介绍</summary>
+        [DisplayName("文章介绍")]
+        [Description("文章介绍")]
+        [DataObjectField(false, false, true, 100)]
+        [BindColumn("Introduce", "文章介绍", "nvarchar(100)")]
+        public String Introduce { get { return _Introduce; } set { if (OnPropertyChanging(__.Introduce, value)) { _Introduce = value; OnPropertyChanged(__.Introduce); } } }
+
         private DateTime _AddTime;
         /// <summary>添加时间</summary>
         [DisplayName("添加时间")]
@@ -131,6 +155,9 @@ namespace Sky.Models
                     case __.IsRecommend : return _IsRecommend;
                     case __.State : return _State;
                     case __.Sort : return _Sort;
+                    case __.Hits : return _Hits;
+                    case __.PhotoUrl : return _PhotoUrl;
+                    case __.Introduce : return _Introduce;
                     case __.AddTime : return _AddTime;
                     case __.EditTime : return _EditTime;
                     case __.AddUser : return _AddUser;
@@ -150,6 +177,9 @@ namespace Sky.Models
                     case __.IsRecommend : _IsRecommend = Convert.ToBoolean(value); break;
                     case __.State : _State = Convert.ToInt32(value); break;
                     case __.Sort : _Sort = Convert.ToInt32(value); break;
+                    case __.Hits : _Hits = Convert.ToInt32(value); break;
+                    case __.PhotoUrl : _PhotoUrl = Convert.ToString(value); break;
+                    case __.Introduce : _Introduce = Convert.ToString(value); break;
                     case __.AddTime : _AddTime = Convert.ToDateTime(value); break;
                     case __.EditTime : _EditTime = Convert.ToDateTime(value); break;
                     case __.AddUser : _AddUser = Convert.ToString(value); break;
@@ -189,6 +219,15 @@ namespace Sky.Models
 
             /// <summary>排序</summary>
             public static readonly Field Sort = FindByName(__.Sort);
+
+            /// <summary>点击数</summary>
+            public static readonly Field Hits = FindByName(__.Hits);
+
+            /// <summary>封面图片路径</summary>
+            public static readonly Field PhotoUrl = FindByName(__.PhotoUrl);
+
+            /// <summary>文章介绍</summary>
+            public static readonly Field Introduce = FindByName(__.Introduce);
 
             /// <summary>添加时间</summary>
             public static readonly Field AddTime = FindByName(__.AddTime);
@@ -232,6 +271,15 @@ namespace Sky.Models
             /// <summary>排序</summary>
             public const String Sort = "Sort";
 
+            /// <summary>点击数</summary>
+            public const String Hits = "Hits";
+
+            /// <summary>封面图片路径</summary>
+            public const String PhotoUrl = "PhotoUrl";
+
+            /// <summary>文章介绍</summary>
+            public const String Introduce = "Introduce";
+
             /// <summary>添加时间</summary>
             public const String AddTime = "AddTime";
 
@@ -274,6 +322,15 @@ namespace Sky.Models
 
         /// <summary>排序</summary>
         Int32 Sort { get; set; }
+
+        /// <summary>点击数</summary>
+        Int32 Hits { get; set; }
+
+        /// <summary>封面图片路径</summary>
+        String PhotoUrl { get; set; }
+
+        /// <summary>文章介绍</summary>
+        String Introduce { get; set; }
 
         /// <summary>添加时间</summary>
         DateTime AddTime { get; set; }

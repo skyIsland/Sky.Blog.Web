@@ -27,17 +27,20 @@ layui.define(['table', 'form'], function (exports) {
         , even: true //开启隔行背景
         , cols: [[
             {
-                field: 'AddTime', aligh: 'center', title: '发表时间', width: 100
+                field: 'AddTime', aligh: 'center', title: '发表时间', width: 150, templet: '<div>{{dateFormat(d.AddTime)}}</div>'
             },
             {
-                field: 'Title', aligh: 'center', title: '标题', width: 100
+                field: 'Title', aligh: 'center', title: '标题', width: 150
             },
             {
-                field: 'Author', aligh: 'center', title: '作者', width: 100
+                field: 'Author', aligh: 'center', title: '作者', width: 150
             },
             {
-                field: 'MyArticleClass.Name', aligh: 'center', title: '分类', width: 100
+                field: 'State', aligh: 'center', title: '状态', width: 150,templet:'#status'
             },
+            //{
+            //    field: 'MyArticleClass.ClassName', aligh: 'center', title: '分类', width: 100
+            //},
             {
                 field: 'IsTop', aligh: 'center', title: '置顶', templet: '#IsTopTpl', width: 100
             },
@@ -45,7 +48,7 @@ layui.define(['table', 'form'], function (exports) {
                 field: 'IsRecommend', aligh: 'center', title: '推荐', templet: '#IsRecommendTpl', width: 100
             },
             {
-                aligh:'center', width: 100, toolbar: '#barDemo'
+                title:"操作",aligh:'center', width: 100, toolbar: '#barDemo'
             }
         ]]
     });  
@@ -81,7 +84,7 @@ layui.define(['table', 'form'], function (exports) {
                 area: ['800px', '500px'],
                 anim: 1,
                 skin: 'pm-layer-login',
-                content: "/Admin/Article/" + data.Id
+                content: "/Admin/Article/Edit/" + data.Id
             });
         }
     });
