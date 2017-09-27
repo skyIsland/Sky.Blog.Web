@@ -8,7 +8,7 @@ using Sky.Common.Web;
 using Sky.Models;
 namespace Sky.Web.Areas.Admin.Controllers
 {
-    public class ArticleController : BaseController<ArticleClass>
+    public class ArticleController : BaseController<Article>
     {
         // GET: Admin/Article
         public override ActionResult Index()
@@ -34,7 +34,7 @@ namespace Sky.Web.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Save(Article model)
+        public override ActionResult Save(Article model)
         {
             var result = new AjaxResult();
             if (model.Id == 0)
@@ -49,7 +49,7 @@ namespace Sky.Web.Areas.Admin.Controllers
             return Json(result);
         }
         [HttpGet]
-        public ActionResult Delete(Article model)
+        public override ActionResult Delete(Article model)
         {
             var result = new AjaxResult();
             if (model != null)
