@@ -15,6 +15,7 @@
     <!--全局样式表-->
     <link href="~/Content/css/global.css" rel="stylesheet" />    
     @RenderSection("Head",false)
+    <meta name="baidu-site-verification" content="8cxuKwWVO0" />
 </head>
 <body>
     <!-- 导航 -->
@@ -97,6 +98,20 @@
     <!-- 全局脚本 -->
     <script src="~/Scripts/global.js"></script>   
     @RenderSection("Scripts",false)
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
 
 </body>
 </html>

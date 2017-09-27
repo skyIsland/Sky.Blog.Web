@@ -222,7 +222,7 @@
                                             </div>
                                         </form>
                                         <ul class="blog-comment">
-                                            <li>
+                                            <li class="layui-hide">
                                                 <div class="comment-parent">
                                                     <img src="~/Content/images/Logo_40.png" alt="倚楼听风雨" />
                                                     <div class="info">
@@ -259,6 +259,18 @@
                                                         </div>
                                                     </form>
                                                 </div>
+                                            </li>
+                                            <li>
+                                                <!--PC版-->
+                                                <div id="SOHUCS" sid="test"></div>
+                                                <script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
+                                                <script type="text/javascript">
+                                                    window.changyan.api.config({
+                                                        appid: 'cyrYAo8vL',
+                                                        conf: 'prod_e8cafb700cafc04daf7ddac62371a657'
+                                                    });
+                                                </script>
+
                                             </li>
                                         </ul>
                                     </div>
