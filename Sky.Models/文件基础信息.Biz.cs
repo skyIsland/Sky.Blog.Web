@@ -78,7 +78,7 @@ namespace Sky.Models
             if (Meta.Count >= 1000)
                 return Find(_.bytHash, bythash);
             else // 实体缓存
-                return Meta.Cache.Entities.Find(__.bytHash, bythash);
+                return Meta.Cache.Entities.FirstOrDefault(p=>p.bytHash==bythash);
             // 单对象缓存
             //return Meta.SingleCache[bythash];
         }

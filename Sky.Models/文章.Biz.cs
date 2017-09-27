@@ -70,9 +70,9 @@ namespace Sky.Models
 
         #region 扩展属性
         /// <summary>
-        /// 所属分类
+        /// 所属分类名称
         /// </summary>
-        public ArticleClass MyArticleClass => ArticleClass.FindById(ArticlassId);
+        public string MyArticleClass => ArticleClass.FindById(ArticlassId).ClassName;
 
         #endregion
 

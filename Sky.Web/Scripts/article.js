@@ -38,9 +38,9 @@ layui.define(['table', 'form'], function (exports) {
             {
                 field: 'State', aligh: 'center', title: '状态', width: 150,templet:'#status'
             },
-            //{
-            //    field: 'MyArticleClass.ClassName', aligh: 'center', title: '分类', width: 100
-            //},
+            {
+                field: 'MyArticleClass', aligh: 'center', title: '分类', width: 100
+            },
             {
                 field: 'IsTop', aligh: 'center', title: '置顶', templet: '#IsTopTpl', width: 100
             },
