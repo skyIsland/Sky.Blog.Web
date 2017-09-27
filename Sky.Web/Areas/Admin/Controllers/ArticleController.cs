@@ -8,17 +8,17 @@ using Sky.Common.Web;
 using Sky.Models;
 namespace Sky.Web.Areas.Admin.Controllers
 {
-    public class ArticleController : BaseController
+    public class ArticleController : BaseController<ArticleClass>
     {
         // GET: Admin/Article
-        public ActionResult Index()
+        public override ActionResult Index()
         {
             var allClass = ArticleClass.FindAll();
             ViewBag.AllClass = allClass;
             return View();
         }
         [HttpGet]
-        public ActionResult GetDataList(string keyword, int pageNo, int pageSize)
+        public override ActionResult GetDataList(string keyword, int pageNo, int pageSize)
         {
             var exp = Article._.State>=0;
             var count = Article.FindCount(exp);
@@ -31,15 +31,6 @@ namespace Sky.Web.Areas.Admin.Controllers
                 PageNo = pageNo
             };            
             return Json(result, JsonRequestBehavior.AllowGet);
-        }
-        public ActionResult Add()
-        {
-            var m=new Article();
-            return View("Edit",m);
-        }
-        public ActionResult Edit(Article model)
-        {
-            return View(model);
         }
         [HttpPost]
         [ValidateInput(false)]

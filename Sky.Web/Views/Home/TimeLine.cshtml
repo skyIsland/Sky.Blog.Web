@@ -1,4 +1,5 @@
-﻿
+﻿@using Sky.Models
+
 @{
     ViewBag.Title = "TimeLine";
 }
@@ -23,77 +24,40 @@
             <div class="timeline-box shadow">
                 <div class="timeline-main">
                     <h1><i class="fa fa-clock-o"></i>时光轴<span> —— 记录生活点点滴滴</span></h1>
-                    <div class="timeline-line"></div>
-                    <div class="timeline-year">
-                        <h2><a class="yearToggle" href="javascript:;">2017年</a><i class="fa fa-caret-down fa-fw"></i></h2>
-                        <div class="timeline-month">
-                            <h3 class=" animated fadeInLeft"><a class="monthToggle" href="javascript:;">9月</a><i class="fa fa-caret-down fa-fw"></i></h3>
-                            <ul>
-                                <li class=" ">
-                                    <div class="h4  animated fadeInLeft">
-                                        <p class="date">09月27日 00:13</p>
-                                    </div>
-                                    <p class="dot-circle animated "><i class="fa fa-dot-circle-o"></i></p>
-                                    <div class="content animated fadeInRight">又要开始新的一天了,加油!</div>
-                                    <div class="clear"></div>
-                                </li>
-                                <li class=" ">
-                                    <div class="h4  animated fadeInLeft">
-                                        <p class="date">09月24日 19:33</p>
-                                    </div>
-                                    <p class="dot-circle animated "><i class="fa fa-dot-circle-o"></i>
-                                    </p>
-                                    <div class="content animated fadeInRight">开始建站</div>
-                                    <div class="clear"></div>
-                                </li>
-                                @*<li class=" ">
-                                    <div class="h4  animated fadeInLeft">
-                                        <p class="date">02月11日 20:29</p>
-                                    </div>
-                                    <p class="dot-circle animated "><i class="fa fa-dot-circle-o"></i></p>
-                                    <div class="content animated fadeInRight">这是2017年2月发表的</div>
-                                    <div class="clear"></div>
-                                </li>
-                                <li class=" ">
-                                    <div class="h4  animated fadeInLeft">
-                                        <p class="date">02月10日 20:35</p>
-                                    </div>
-                                    <p class="dot-circle animated "><i class="fa fa-dot-circle-o"></i></p>
-                                    <div class="content animated fadeInRight">这是2017年2月发表的</div>
-                                    <div class="clear"></div>
-                                </li>*@
-                            </ul>
-                        </div>
-                        @*<div class="timeline-month">
-                            <h3 class=" animated fadeInLeft"><a class="monthToggle" href="javascript:;">1月</a><i class="fa fa-caret-down fa-fw"></i></h3>
-                            <ul>
-                                <li class=" ">
-                                    <div class="h4  animated fadeInLeft">
-                                        <p class="date">01月23日 19:33</p>
-                                    </div>
-                                    <p class="dot-circle animated "><i class="fa fa-dot-circle-o"></i></p>
-                                    <div class="content animated fadeInRight">这是2017年1月发表的</div>
-                                    <div class="clear"></div>
-                                </li>
-                                <li class=" ">
-                                    <div class="h4  animated fadeInLeft">
-                                        <p class="date">01月11日 20:29</p>
-                                    </div>
-                                    <p class="dot-circle animated "><i class="fa fa-dot-circle-o"></i></p>
-                                    <div class="content animated fadeInRight">这是2017年1月发表的</div>
-                                    <div class="clear"></div>
-                                </li>
-                                <li class=" ">
-                                    <div class="h4  animated fadeInLeft">
-                                        <p class="date">01月10日 20:35</p>
-                                    </div>
-                                    <p class="dot-circle animated "><i class="fa fa-dot-circle-o"></i></p>
-                                    <div class="content animated fadeInRight">这是2017年1月发表的</div>
-                                    <div class="clear"></div>
-                                </li>
-                            </ul>
-                        </div>*@
-                    </div>
+                    <div class="timeline-line"></div>                    
+                    @{
+                        var years = TimeLine.FindAll().OrderByDescending(p=>p.Time).GroupBy(p => p.Time.Year).ToList();
+                        foreach (var item in years)
+                        {
+                            var months = item.GroupBy(p=>p.Time.Month);
+                            <div class="timeline-year">
+                                <h2><a class="yearToggle" href="javascript:;">@(item.Key+"年")</a><i class="fa fa-caret-down fa-fw"></i></h2>
+                                <div class="timeline-month">
+                                    @foreach (var month in months)
+                                    {
+                                        <h3 class="animated fadeInLeft"><a class="monthToggle" href="javascript:;">@(month.Key+"月")</a><i class="fa fa-caret-down fa-fw"></i>
+                                        </h3>
+                                        <ul>
+                                            @foreach (var day in month)
+                                            {
+                                                <li class="">
+                                                    <div class="h4  animated fadeInLeft">
+                                                        <p class="date">@day.Time.ToString("MM月dd日 HH:ss")</p>
+                                                    </div>
+                                                    <p class="dot-circle animated "><i class="fa fa-dot-circle-o"></i>
+                                                    </p>
+                                                    <div class="content animated fadeInRight">@day.Desc</div>
+                                                    <div class="clear"></div>
+                                                </li>
+                                            }
+                                        </ul>
+                                    }
+                                   
+                                </div>
+                               
+                            </div>
+                        }
+                    }
                     @*<div class="timeline-year">
                         <h2><a class="yearToggle" href="javascript:;">2016年</a><i class="fa fa-caret-down fa-fw"></i></h2>
                         <div class="timeline-month">

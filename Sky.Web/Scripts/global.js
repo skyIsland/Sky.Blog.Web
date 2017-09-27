@@ -1,5 +1,8 @@
 ﻿layui.use(['element', 'layer', 'util', 'form'], function () {
     var $ = layui.jquery;
+    var element = layui.element;
+    var layer = layui.layer;
+
     //模拟QQ登陆
     $('.blog-user').click(function () {
         var user = this;
@@ -23,7 +26,10 @@
             }
         }
     });
-
+    //导航点击事件
+    $('.layui-nav-item').click(function () {
+        $(this).addClass('layui-this').siblings().removeClass('layui-this');
+    });
     //子栏目导航点击事件
     $('.child-nav span').click(function () {
         //layer.msg('切换到相应栏目');

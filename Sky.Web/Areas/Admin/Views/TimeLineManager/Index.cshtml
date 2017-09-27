@@ -27,7 +27,7 @@
                     </div>
                     <div class="layui-inline">
                         <div class="layui-input-inline" style="width: auto">
-                            <a id="addArticleClass" class="layui-btn layui-btn-normal">添加分类</a>
+                            <a id="addArticleClass" class="layui-btn layui-btn-normal">添加时光轴描述</a>
                         </div>
                     </div>
                 </div>
@@ -45,30 +45,7 @@
     </div>
 </fieldset>
 @section Scripts
-{
-    @*<script type="text/html" id="IsTopTpl">
-        <form class="layui-form" action="">
-            <div class="layui-form-item" style="margin:0;">
-                {{#  if(d.IsTop){ }}
-                <input type="checkbox" name="top" title="置顶" lay-filter="top" checked disabled>
-                {{#  } else { }}
-                <input type="checkbox" name="top" title="置顶" lay-filter="top" disabled>
-                {{#  } }}
-
-            </div>
-        </form>
-    </script>
-    <script type="text/html" id="IsRecommendTpl">
-        <form class="layui-form" action="">
-            <div class="layui-form-item" style="margin:0;">
-                {{#  if(d.IsTop){ }}
-                <input type="checkbox" name="top" title="推荐" lay-filter="recommend" checked>
-                {{#  } else { }}
-                <input type="checkbox" name="top" title="推荐" lay-filter="recommend">
-                {{#  } }}
-            </div>
-        </form>
-    </script>*@
+{   
     <script type="text/html" id="barDemo">
         <a class="layui-btn layui-btn-mini" lay-event="edit">编辑</a>
         <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
@@ -86,7 +63,7 @@
                     ,
                     height: 400 //容器高度
                     ,
-                    url: '/Admin/ArticleClass/GetDataList',
+                    url: '/Admin/TimeLineManager/GetDataList',
                     loading: true,
                     page: true,
                     limits: [5, 7, 10],
@@ -114,23 +91,18 @@
                     cols: [
                         [
                             {
-                                field: 'AddTime',
+                                field: 'Time',
                                 aligh: 'center',
-                                title: '添加时间',
+                                title: '显示',
                                 width: 180,
-                                templet: '<div>{{dateFormat(d.AddTime)}}</div>'
+                                templet: '<div>{{dateFormat(d.AddTime)}}</div>',
+                                sort:true
                             },
                             {
-                                field: 'ClassName',
+                                field: 'Desc',
                                 aligh: 'center',
-                                title: '分类名称',
-                                width: 180
-                            },
-                            {
-                                field: 'Sort',
-                                aligh: 'center',
-                                title: '排序',
-                                width: 100
+                                title: '描述',
+                                width: 300
                             },
                             {
                                 title: '操作',
@@ -149,7 +121,7 @@
                         var data = obj.data;
                         if (obj.event === 'del') {
                             var msg = '你真的要把  <span style="color:red;">' +
-                                data.ClassName +
+                                data.Desc +
                                 '</span> 给删除吗？<img src="' +
                                 location.origin +
                                 '/Scripts/plug/layui/images/face/4.gif" alt="[可怜]">';
@@ -158,7 +130,7 @@
                                 '/Scripts/plug/layui/images/face/7.gif" alt="[害羞]">';
                             layer.confirm(msg, { icon: 3, title: title }, function (index) {
                                 //do something
-                                $.get('/Admin/ArticleClass/Delete/' + data.Id, {}, function (result) {
+                                $.get('/Admin/TimeLineManager/Delete/' + data.Id, {}, function (result) {
                                     if (result.Result) {
                                         layer.msg('你好狠，居然要删除我！！！');
                                         obj.del();
@@ -178,7 +150,7 @@
                                 area: ['600px', '300px'],
                                 anim: 1,
                                 skin: 'pm-layer-login',
-                                content: "/Admin/ArticleClass/Edit/"+data.Id
+                                content: "/Admin/TimeLineManager/Edit/"+data.Id
                             });
                         }
                     });
@@ -196,7 +168,7 @@
                             //closeBtn: 0,
                             anim: 1,
                             skin: 'pm-layer-login',
-                            content: "/Admin/ArticleClass/Add"
+                            content: "/Admin/TimeLineManager/Add"
                             //yes: function (index, layero) {
                             //    var iframeWin = window[layero.find('iframe')[0]['name']]; //得到iframe页的窗口对象，执行iframe页的方法：iframeWin.method();
                             //    iframeWin.commit(table.reload('tableData'));

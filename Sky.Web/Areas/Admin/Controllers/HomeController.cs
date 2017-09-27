@@ -7,11 +7,14 @@ using System.Web.Security;
 using Sky.Common.Common;
 using Sky.Common.Web;
 using Sky.Models;
+using Sky.Web.Filter;
 using XCode.Membership;
 
 namespace Sky.Web.Areas.Admin.Controllers
 {
-    public class HomeController : BaseController
+    [MvcHandleError]
+    [EntityAuthorize]
+    public class HomeController :Controller
     {
         // GET: Admin/Home       
 

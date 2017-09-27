@@ -9,50 +9,37 @@ using XCode;
 
 namespace Sky.Web.Areas.Admin.Controllers
 {
-    public class ArticleClassController : BaseController
+    public class ArticleClassController : BaseController<ArticleClass>
     {
-        // GET: Admin/ArticleClass
-        public ActionResult Index()
-        {
-            return View();
-        }
-        [HttpGet]
-        public ActionResult GetDataList(string keyword, int pageNo, int pageSize)
-        {
-            var exp = "1=1";
-            var count = ArticleClass.FindCount(exp);
-            var data = ArticleClass.FindAll(exp, ArticleClass._.Id, null, (pageNo - 1) * pageSize, pageSize);
-            var result = new DataResult
-            {
-                Result = true,
-                Count = (int)count,
-                Data = data,
-                PageNo = pageNo
-            };
-            return Json(result, JsonRequestBehavior.AllowGet);
-        }
-        public ActionResult Add()
-        {
-            var m = new ArticleClass();
-            return View("Edit", m);
-        }
-        public ActionResult Edit(ArticleClass model)
-        {
-            return View(model);
-        }      
+       
+        //[HttpGet]
+        //public ActionResult GetDataList(string keyword, int pageNo, int pageSize)
+        //{
+        //    var exp = "1=1";
+        //    var count = ArticleClass.FindCount(exp);
+        //    var data = ArticleClass.FindAll(exp, ArticleClass._.Id, null, (pageNo - 1) * pageSize, pageSize);
+        //    var result = new DataResult
+        //    {
+        //        Result = true,
+        //        Count = (int)count,
+        //        Data = data,
+        //        PageNo = pageNo
+        //    };
+        //    return Json(result, JsonRequestBehavior.AllowGet);
+        //}      
+          
         [HttpPost]
-        public ActionResult Save(ArticleClass model)
+        public override ActionResult Save(ArticleClass model)
         {
             model.ClassName = model.ClassName.Trim();         
             var records = ArticleClass.FindAll(ArticleClass._.ClassName, model.ClassName).FirstOrDefault();
             if (records != null&&records.Id!=model.Id)
                 return Json(new AjaxResult { Message = "分类名字已存在!" });
-            if (model.Id == 0) model.AddTime = DateTime.Now;
             model.Save();
             return Json(new AjaxResult{Result = true,Message="保存成功"});
         }
         [HttpGet]
-        public ActionResult Delete(ArticleClass model)
+        public override ActionResult Delete(ArticleClass model)
         {
             var result=new AjaxResult();
             if (model != null)

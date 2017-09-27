@@ -56,6 +56,8 @@
     <Compile Include="文章.cs" />
     <Compile Include="文章分类.Biz.cs" />
     <Compile Include="文章分类.cs" />
+    <Compile Include="时光轴.Biz.cs" />
+    <Compile Include="时光轴.cs" />
     <Compile Include="用户.Biz.cs" />
     <Compile Include="用户.cs" />
   </ItemGroup>
@@ -68,7 +70,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="data.xml" />
+    <Content Include="T4\data.xml" />
+    <Content Include="T4\TimeLine.xml" />
     <Content Include="生成实体类.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>生成实体类.log</LastGenOutput>

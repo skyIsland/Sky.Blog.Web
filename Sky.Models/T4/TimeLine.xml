@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Tables Version="9.6.6456.33157" NameSpace="Sky.Models" ConnName="Conn" Output="">
+  <Table Name="TimeLine" Description="时光轴" DbType="SqlServer">
+    <Columns>
+      <Column Name="Id" DataType="Int32" Identity="True" Description="Id" Primary="true" />
+      <Column Name="Desc" DataType="String" Master="True" Length="500" Description="描述" />
+      <Column Name="Time" DataType="DateTime" Master="True" Description="时间" />
+      <Column Name="AddTime" DataType="DateTime" Master="True" Description="添加时间" />
+    </Columns>
+  </Table>
+</Tables>

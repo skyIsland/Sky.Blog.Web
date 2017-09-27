@@ -39,7 +39,7 @@ layui.define(['table', 'form'], function (exports) {
                 field: 'State', aligh: 'center', title: '状态', width: 150,templet:'#status'
             },
             {
-                field: 'MyArticleClass', aligh: 'center', title: '分类', width: 100
+                field: 'ArticleClassName', aligh: 'center', title: '分类', width: 100
             },
             {
                 field: 'IsTop', aligh: 'center', title: '置顶', templet: '#IsTopTpl', width: 100
@@ -64,7 +64,7 @@ layui.define(['table', 'form'], function (exports) {
             var title = '萌萌的提示<img src="' + location.origin + '/Scripts/plug/layui/images/face/7.gif" alt="[害羞]">'
             layer.confirm(msg, { icon: 3, title: title }, function (index) {
                 //do something
-                $.get('Delete/' + data.Id, {}, function (result) {
+                $.get('/Admin/Article/Delete/' + data.Id, {}, function (result) {
                     if (result.Result) {
                         layer.msg('你好狠，居然要删除我！！！');
                         obj.del();
