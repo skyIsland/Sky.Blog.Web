@@ -1,5 +1,39 @@
-﻿layui.use('jquery', function () {
+﻿layui.use(['jquery','flow'], function () {
     var $ = layui.jquery;
+    var flow = layui.flow;
+    //信息流
+    flow.load({
+        elem: '.blog-main-left', //指定列表容器
+        isAuto: true,
+        end: '我是一个有底线的人!',
+        mb: 200,
+        done: function (page, next) {
+            var pages;  //总页数
+            var lis = [];
+            if (page == 1) {
+                next(lis.join(''), page < 999999);
+                return;
+            }
+            $.ajax({
+                type: 'get',
+                url: '/Home/GetDataList',
+                data: { "pageNo": page, "pageSize": 3 },
+                contentType: 'application/json',
+                success: function (res) {
+                    if (res.Result) {
+                        lis.push(res.Data);
+                        pages = res.TotalPages;
+                        next(lis.join(''), page < pages);
+                    } else {
+                        layer.msg('获取数据失败', { icon: 2 });
+                    }
+                },
+                error: function (e) {
+                    layer.msg(e.responseText);
+                }
+            });
+        }
+    });
     $(function () {
         //播放公告
         playAnnouncement(3000);

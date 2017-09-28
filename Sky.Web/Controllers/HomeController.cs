@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Sky.Common.Web;
 using Sky.Models;
 using Sky.Web.Filter;
 
@@ -65,6 +66,46 @@ namespace Sky.Web.Controllers
         public ActionResult About()
         {
             return View();
-        }        
+        }
+        [HttpGet]
+        public  ActionResult GetDataList(int pageNo, int pageSize)
+        {
+            var exp = Models.Article._.State == 1;
+            var count = Models.Article.FindCount(exp);
+            var datas = Models.Article.FindAll(exp, Models.Article._.IsTop + " Desc," + Models.Article._.IsRecommend + " Desc," + "EditTime desc", null, (pageNo - 1) * pageSize, pageSize).ToList();
+            var totalPages = (int)Math.Ceiling((double) count / pageSize);
+            var data = new List<string>{};
+            datas.ForEach(p =>
+            {               
+                data.Add("<div class=\"article shadow animated zoomIn\">" +
+                    "<div class=\"article-left\">" +
+                    "<img src = '" + (p.PhotoUrl.IsNullOrWhiteSpace() ? "/Content/images/ShaDaMeng.jpg" : p.PhotoUrl) + "' alt=" + p.Title + " />" +
+                    "</div>" +
+                    "<div class=\"article-right\">" +
+                    "<div class=\"article-title\">" +
+                    "<a href = '" + Url.Action("Detail", new { id = p.Id }) + "'>" + p.Title + "</a>" +
+                     "</div>" +
+                     "<div class=\"article-abstract\">" + p.Introduce +
+                        " </div>" +
+                        " </div>" +
+                        " <div class=\"clear\"></div>" +
+                        " <div class=\"article-footer\">" +
+                        " <span><i class=\"fa fa-clock-o\"></i>&nbsp;&nbsp;" + p.AddTime.ToString("yyyy-MM-dd HH:mm:ss") + "</span>" +
+                        " <span class=\"article-author\"><i class=\"fa fa-user\"></i>&nbsp;&nbsp;" + p.Author + "</span>" +
+                        " <span><i class=\"fa fa-tag\"></i>&nbsp;&nbsp;<a href = " + Url.Action("Article", new { articleClassId = p.ArticlassId }) + ">" + p.MyArticleClass + "</a></span>" +
+                        " <span class=\"article-viewinfo\"><i class=\"fa fa-eye\"></i>&nbsp;"+p.Hits+"</span>" +
+                        " </div>" +
+                        "</div>");
+            });
+            var result = new DataResult
+            {
+                Result = true,
+                Count = (int)count,
+                Data = data.Join(""),
+                PageNo = pageNo,
+                TotalPages = totalPages
+            };
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
     }
 }

@@ -2,7 +2,11 @@
     var $ = layui.jquery;
     var element = layui.element;
     var layer = layui.layer;
-
+    $(function() {
+        $('img').error(function () {
+            $(this).attr('src', '/Content/images/ShaDaMeng.jpg');
+        }); 
+    });
     //模拟QQ登陆
     $('.blog-user').click(function () {
         var user = this;

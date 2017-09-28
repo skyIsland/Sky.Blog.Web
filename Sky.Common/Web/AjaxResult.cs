@@ -37,5 +37,10 @@ namespace Sky.Common.Web
         /// </summary>
 
         public int PageNo { get; set; }
+        /// <summary>
+        /// 总页数
+        /// </summary>
+
+        public int TotalPages { get; set; }
     }
 }

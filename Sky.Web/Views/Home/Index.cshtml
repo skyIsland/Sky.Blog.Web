@@ -38,16 +38,17 @@
             <!--左边文章列表-->
             <div class="blog-main-left">
                 @{
-                    var articles = Article.FindAll("", Article._.IsTop+" Desc,"+Article._.IsRecommend+" Desc,"+"AddTime desc", null, 0, 8);
+                    var articles = Article.FindAll(Article._.State==1, Article._.IsTop+" Desc,"+Article._.IsRecommend+" Desc,"+"EditTime desc", null, 0, 3);
                     foreach (var article in articles)
                     {
                         <div class="article shadow">
                             <div class="article-left">
-                                <img src="@(article.PhotoUrl.IsNullOrWhiteSpace()?"/Content/images/cover/201703181909057125.jpg":article.PhotoUrl)" alt="@article.Title"/>
+                                <img src="@(article.PhotoUrl.IsNullOrWhiteSpace()?"/Content/images/ShaDaMeng.jpg":article.PhotoUrl)" alt="@article.Title"/>
                             </div>
                             <div class="article-right">
                                 <div class="article-title">
-                                    <a href="@Url.Action("Detail",new{id=article.Id})">@article.Title</a>
+                                    @(article.IsTop? Html.Raw("<i class=\"icon-stick\">顶</i>"):Html.Raw(""))
+                                    <a href="@Url.Action("Detail", new {id = article.Id})">@article.Title</a>
                                 </div>
                                 <div class="article-abstract">
                                     @article.Introduce                           
@@ -142,7 +143,6 @@
         </div>
     </div>
 </div>
-
 @section Scripts
 {
     <!-- 本页脚本 -->
