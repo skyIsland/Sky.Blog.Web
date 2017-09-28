@@ -32,19 +32,22 @@
             <a class="blog-logo" href="/Home/Index">倚楼听风雨</a>
             <!-- 导航菜单 -->
             <ul class="layui-nav" lay-filter="nav">
-                <li class="layui-nav-item layui-this">
+                @{
+                    var action = Request.RequestContext.RouteData.Values["action"].ToString();
+                }
+                <li class="layui-nav-item @(action=="Index"?"layui-this":"")">
                     <a href="/"><i class="fa fa-home fa-fw"></i>&nbsp;网站首页</a>
-                </li>
-                <li class="layui-nav-item">
+                </li>               
+                <li class="layui-nav-item @(action=="Article"?"layui-this":"")">
                     <a href="@Url.Action("Article","Home")"><i class="fa fa-file-text fa-fw"></i>&nbsp;文章专栏</a>
                 </li>
                 @*<li class="layui-nav-item">
                     <a href="@Url.Action("Resource","Home")"><i class="fa fa-tags fa-fw"></i>&nbsp;资源分享</a>
                 </li>*@
-                <li class="layui-nav-item">
+                <li class="layui-nav-item @(action== "TimeLine"?"layui-this":"")" >
                     <a href="@Url.Action("TimeLine","Home")"><i class="fa fa-hourglass-half fa-fw"></i>&nbsp;点点滴滴</a>
                 </li>
-                <li class="layui-nav-item">
+                <li class="layui-nav-item @(action=="About"?"layui-this":"")">
                     <a href="@Url.Action("About","Home")"><i class="fa fa-info fa-fw"></i>&nbsp;关于本站</a>
                 </li>
             </ul>
