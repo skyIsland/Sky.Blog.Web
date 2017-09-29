@@ -31,7 +31,8 @@ namespace Sky.Web.Areas.Admin.Controllers
                 PageNo = pageNo
             };            
             return Json(result, JsonRequestBehavior.AllowGet);
-        }
+        }       
+
         [HttpPost]
         [ValidateInput(false)]
         public override ActionResult Save(Article model)

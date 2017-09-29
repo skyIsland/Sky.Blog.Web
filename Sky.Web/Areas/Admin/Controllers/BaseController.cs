@@ -48,9 +48,10 @@ namespace Sky.Web.Areas.Admin.Controllers
         /// 添加
         /// </summary>
         /// <returns></returns>
-        public virtual ActionResult Add()
+        public virtual ActionResult Add(TEntity model)
         {
-            var model=new TEntity();
+            if(model==null)
+                model=new TEntity();
             return View("Edit", model);
         }
         /// <summary>

@@ -2,7 +2,7 @@
 @model List<Sky.Models.Article>
 @{
     ViewBag.Title = "Article";
-    string keyword = ViewBag.KeyWord;
+    string keyword = ViewBag.IsKeyWord;
     ArticleClass s = ViewBag.ArticleClass;
 }
 @section Head
@@ -24,7 +24,7 @@
         <div class="blog-main">
             <div class="blog-main-left">
                 @{
-                    if (!keyword.IsNullOrWhiteSpace())//关键词搜索且搜索到0条数据
+                    if (!keyword.IsNullOrWhiteSpace()&&s.Id==0)//关键词搜索且搜索到0条数据
                     {
                         <div class="shadow" style="text-align:center;font-size:16px;padding:40px 15px;background:#fff;margin-bottom:15px;">
                                 未搜索到与【<span style="color: #FF5722;">@keyword</span>】有关的文章，随便看看吧！
@@ -36,11 +36,11 @@
                    {
                        <div class="article shadow">
                            <div class="article-left">
-                               <img src="@(item.PhotoUrl.IsNullOrWhiteSpace()?"/Content/images/cover/201703181909057125.jpg":item.PhotoUrl)" alt="@item.Title"/>
+                               <img src="@(item.PhotoUrl.IsNullOrWhiteSpace()?"/Content/images/ShaDaMeng.jpg":item.PhotoUrl)" alt="@item.Title"/>
                            </div>
                            <div class="article-right">
                                <div class="article-title">
-                                   <a href="@Url.Action("Detail",new{id=item.Id})">@item.Title！</a>
+                                   <a href="@Url.Action("Detail",new{id=item.Id})">@item.Title</a>
                                </div>
                                <div class="article-abstract">
                                    @item.Introduce
@@ -50,7 +50,7 @@
                            <div class="article-footer">
                                <span><i class="fa fa-clock-o"></i>&nbsp;&nbsp;@item.AddTime.ToString("yyyy-MM-dd HH:mm:ss")</span>
                                <span class="article-author"><i class="fa fa-user"></i>&nbsp;&nbsp;@item.Author</span>
-                               <span><i class="fa fa-tag"></i>&nbsp;&nbsp;<a href="#">@item.MyArticleClass</a></span>
+                               <span><i class="fa fa-tag"></i>&nbsp;&nbsp;<a href="@Url.Action("Article",new{articleClassId=item.ArticlassId})">@item.MyArticleClass</a></span>
                                <span class="article-viewinfo"><i class="fa fa-eye"></i>&nbsp;@item.Hits</span>
                                @*<span class="article-viewinfo"><i class="fa fa-commenting"></i>&nbsp;4</span>*@
                            </div>
@@ -60,12 +60,12 @@
             </div>
             <div class="blog-main-right">
                 <div class="blog-search">
-                    <form class="layui-form" action="@Url.Action("Article")">
+                    <form class="layui-form"  action="#">
                         <div class="layui-form-item">
                             <div class="search-keywords  shadow">
                                 <input type="text" name="keyword" lay-verify="required" placeholder="输入关键词搜索" autocomplete="off" class="layui-input">
                             </div>
-                            <div class="search-submit  shadow">
+                            <div class="search-submit shadow">
                                 <a class="search-btn" lay-submit="formSearch" lay-filter="formSearch"><i class="fa fa-search"></i></a>
                             </div>
                         </div>

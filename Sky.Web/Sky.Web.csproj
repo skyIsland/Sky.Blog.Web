@@ -47,6 +47,8 @@
     <Reference Include="NewLife.Core, Version=6.4.6456.33156, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NewLife.Core.6.4.6456.33156\lib\net45\NewLife.Core.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -255,6 +257,7 @@
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\TimeLineManagerController.cs" />
     <Compile Include="Common\EntityModelBinder.cs" />
+    <Compile Include="Common\GetIpFromWhere.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UploadFileController.cs" />
@@ -323,6 +326,7 @@
     <Content Include="Areas\Admin\Views\ArticleClass\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\TimeLineManager\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\TimeLineManager\Index.cshtml" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\MyProject.pubxml" />
     <Content Include="Views\Error\Error500.cshtml" />
     <Content Include="Views\Error\Error404.cshtml" />
@@ -357,6 +361,9 @@
       <Project>{5ef7f268-f845-46f6-990f-bdc61bc9a703}</Project>
       <Name>Sky.Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

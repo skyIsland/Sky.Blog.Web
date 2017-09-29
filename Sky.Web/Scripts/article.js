@@ -88,19 +88,19 @@ layui.define(['table', 'form'], function (exports) {
             });
         }
     });
-    $('#addArticle').on('click',
-        function () {
-            layer.open({
-                id: 'layer-articleClass',
-                type: 2,
-                title: '添加文章',
-                shade: 0.4,
-                shadeClose: true,
-                area: ['800px', '500px'],
-                anim: 1,
-                skin: 'pm-layer-login',
-                content: "/Admin/Article/Add"
+    $('#addArticle').on('click',function () {
+        var val = $('select[name=articleClass]').val();
+        layer.open({
+            id: 'layer-articleClass',
+            type: 2,
+            title: '添加文章',
+            shade: 0.4,
+            shadeClose: true,
+            area: ['800px', '500px'],
+            anim: 1,
+            skin: 'pm-layer-login',
+            content: "/Admin/Article/Add?ArticlassId=" + val
             });
-        });
+     });
     exports('article', {});
 });

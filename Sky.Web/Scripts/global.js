@@ -2,6 +2,7 @@
     var $ = layui.jquery;
     var element = layui.element;
     var layer = layui.layer;
+    var form = layui.form;
     $(function() {
         $('img').error(function () {
             $(this).attr('src', '/Content/images/ShaDaMeng.jpg');
@@ -71,7 +72,12 @@
     $('.article-category > a').click(function (e) {
         e.stopPropagation(); //阻止事件冒泡
     });
-
+    //监听搜索提交
+    form.on('submit(formSearch)', function (data) {
+        layer.msg('bug哟');
+        document.location.href = "/Home/Article?keyword=" + escape(data.field.keyword);
+        return false;
+    });
     //显示百度分享
     function shareIn() {
         $('.blog-share').unbind('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend');

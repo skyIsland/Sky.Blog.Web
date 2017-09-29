@@ -10,6 +10,7 @@ using Sky.Web.Filter;
 namespace Sky.Web.Controllers
 {
     [TestActionExecuting]
+    [MvcHandleError]
     public class HomeController : Controller
     {
         // GET: Home

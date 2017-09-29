@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using System.Web.Mvc;
 using NewLife.Web;
+using Sky.Web.Common;
 
 namespace Sky.Web.Filter
 {
@@ -35,7 +36,11 @@ namespace Sky.Web.Filter
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             var request = filterContext.RequestContext.HttpContext.Request;
-            NewLife.Log.XTrace.Log.Info($"Ip:{NewLife.Web.WebHelper.UserHost}访问了{request.Url}!来源{request.UrlReferrer},浏览器{request.Browser.Browser}");
+            var ip = NewLife.Web.WebHelper.UserHost;
+            //var ip = "106.15.52.246";
+            var str = GetIpFromWhere.BindIp(ip);
+            NewLife.Log.XTrace.Log.Info($"Ip:{ip}访问了{request.Url}!来源{request.UrlReferrer},浏览器{request.Browser.Browser}");
+            NewLife.Log.XTrace.Log.Info($"Ip地址来源{str}");
             base.OnActionExecuting(filterContext);
         }
     }
