@@ -248,6 +248,7 @@
   <ItemGroup>
     <Compile Include="App_Start\Filter\EntityAuthorizeAttribute.cs" />
     <Compile Include="App_Start\Filter\MvcHandleErrorAttribute.cs" />
+    <Compile Include="App_Start\Filter\RecordPositionAttribute.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\ArticleClassController.cs" />
@@ -257,7 +258,6 @@
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\TimeLineManagerController.cs" />
     <Compile Include="Common\EntityModelBinder.cs" />
-    <Compile Include="Common\GetIpFromWhere.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UploadFileController.cs" />
