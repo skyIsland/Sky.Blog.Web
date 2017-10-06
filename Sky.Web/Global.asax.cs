@@ -8,16 +8,21 @@ using System.Web.Routing;
 
 namespace Sky.Web
 {
-    //[TestActionExecuting]
     public class MvcApplication : System.Web.HttpApplication
     {
-        //[TestActionExecuting]
         protected void Application_Start()
         {
+            RemoveWebFormEngines();
             AreaRegistration.RegisterAllAreas();
             //注册实体数据绑定器
             EntityModelBinderProvider.Register();            
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+        }
+
+        void RemoveWebFormEngines()
+        {
+             ViewEngines.Engines.Clear();
+            ViewEngines.Engines.Add(new RazorViewEngine());
         }
     }
 }

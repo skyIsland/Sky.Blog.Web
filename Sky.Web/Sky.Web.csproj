@@ -135,6 +135,7 @@
     <Content Include="Scripts\home.js" />
     <Content Include="Scripts\index.js" />
     <Content Include="Scripts\main.js" />
+    <Content Include="Scripts\plug\echarts\echarts.js" />
     <Content Include="Scripts\plug\font-awesome\css\font-awesome.css" />
     <Content Include="Scripts\plug\font-awesome\css\font-awesome.min.css" />
     <Content Include="Scripts\plug\font-awesome\fonts\fontawesome-webfont.svg" />
@@ -330,6 +331,7 @@
     <None Include="Properties\PublishProfiles\MyProject.pubxml" />
     <Content Include="Views\Error\Error500.cshtml" />
     <Content Include="Views\Error\Error404.cshtml" />
+    <Content Include="Views\Home\FromWhere.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

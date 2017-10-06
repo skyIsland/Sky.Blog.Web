@@ -12,10 +12,10 @@ namespace Sky.Web.Filter
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             var request = filterContext.RequestContext.HttpContext.Request;
-            //var ip = NewLife.Web.WebHelper.UserHost;
-            var ip = "116.208.225.252";
+            var ip = NewLife.Web.WebHelper.UserHost;
+            //var ip = "116.208.225.252";
             var str = GetIpFromWhere.GetPosition(ip, IpKey);
-            if (!str.IsNullOrEmpty()||!str.Contains("错误"))//返回正确的信息
+            if (!str.IsNullOrEmpty()&&!str.Contains("错误"))//返回正确的信息
             {
                 var array = str.Split(",");
                 var provice = array[0];

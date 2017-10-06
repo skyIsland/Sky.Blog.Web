@@ -80,6 +80,14 @@ namespace Sky.Models
         #endregion
 
         #region 扩展属性
+
+        private PositionData _positionDatas;
+       
+        /// <summary>
+        /// 所属城市
+        /// </summary>
+        public PositionData PositionDatas => _positionDatas ?? (_positionDatas = PositionData.Find(PositionData._.Id, CityId));
+
         #endregion
 
         #region 扩展查询

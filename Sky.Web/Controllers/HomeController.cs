@@ -59,7 +59,14 @@ namespace Sky.Web.Controllers
         {
             return View();
         }
-
+        /// <summary>
+        /// 网站来源分析
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult FromWhere()
+        {
+            return View();
+        }
         /// <summary>
         /// 关于本站
         /// </summary>
@@ -106,6 +113,24 @@ namespace Sky.Web.Controllers
                 PageNo = pageNo,
                 TotalPages = totalPages
             };
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+        /// <summary>
+        /// 获取访问网站省份数据
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult GetHitsFromProvice()
+        {
+            //按省份分组
+            var data = IpInfo.FindAll().GroupBy(p => p.ProvinceId).OrderByDescending(p=>p.Count()).ToList();
+            var provice=new List<object>();
+            data.ForEach(p =>
+            {
+                var strName = (PositionData.Find(PositionData._.Id, p.Key)??new PositionData()).Province;
+                provice.Add(new {key=strName,value=p.Count()});
+            });
+            var result = new AjaxResult {Data = provice, Result = true};
             return Json(result, JsonRequestBehavior.AllowGet);
         }
     }

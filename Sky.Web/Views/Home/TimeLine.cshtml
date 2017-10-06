@@ -18,24 +18,29 @@
         </blockquote>
         <div class="blog-main">
             <div class="child-nav shadow">
-                <span class="child-nav-btn child-nav-btn-this">时光轴</span>
-                <span class="child-nav-btn">笔记墙</span>
+                <span class="child-nav-btn child-nav-btn-this" onclick="javascript: location.href = '/Home/TimeLine/';">时光轴</span>
+                <span class="child-nav-btn" onclick="javascript: location.href = '/Home/FromWhere/';">网站来源分析</span>
             </div>
             <div class="timeline-box shadow">
                 <div class="timeline-main">
-                    <h1><i class="fa fa-clock-o"></i>时光轴<span> —— 记录生活点点滴滴</span></h1>
-                    <div class="timeline-line"></div>                    
+                    <h1>
+                        <i class="fa fa-clock-o"></i>时光轴<span> —— 记录生活点点滴滴</span>
+                    </h1>
+                    <div class="timeline-line"></div>
                     @{
-                        var years = TimeLine.FindAll().OrderByDescending(p=>p.Time).GroupBy(p => p.Time.Year).ToList();
+                        var years = TimeLine.FindAll().OrderByDescending(p => p.Time).GroupBy(p => p.Time.Year).ToList();
                         foreach (var item in years)
                         {
-                            var months = item.GroupBy(p=>p.Time.Month);
+                            var months = item.GroupBy(p => p.Time.Month);
                             <div class="timeline-year">
-                                <h2><a class="yearToggle" href="javascript:;">@(item.Key+"年")</a><i class="fa fa-caret-down fa-fw"></i></h2>
+                                <h2>
+                                    <a class="yearToggle" href="javascript:;">@(item.Key + "年")</a><i class="fa fa-caret-down fa-fw"></i>
+                                </h2>
                                 <div class="timeline-month">
                                     @foreach (var month in months)
                                     {
-                                        <h3 class="animated fadeInLeft"><a class="monthToggle" href="javascript:;">@(month.Key+"月")</a><i class="fa fa-caret-down fa-fw"></i>
+                                        <h3 class="animated fadeInLeft">
+                                            <a class="monthToggle" href="javascript:;">@(month.Key + "月")</a><i class="fa fa-caret-down fa-fw"></i>
                                         </h3>
                                         <ul>
                                             @foreach (var day in month)
@@ -44,7 +49,8 @@
                                                     <div class="h4  animated fadeInLeft">
                                                         <p class="date">@day.Time.ToString("MM月dd日 HH:ss")</p>
                                                     </div>
-                                                    <p class="dot-circle animated "><i class="fa fa-dot-circle-o"></i>
+                                                    <p class="dot-circle animated ">
+                                                        <i class="fa fa-dot-circle-o"></i>
                                                     </p>
                                                     <div class="content animated fadeInRight">@day.Desc</div>
                                                     <div class="clear"></div>
@@ -52,74 +58,14 @@
                                             }
                                         </ul>
                                     }
-                                   
                                 </div>
-                               
                             </div>
                         }
                     }
-                    @*<div class="timeline-year">
-                        <h2><a class="yearToggle" href="javascript:;">2016年</a><i class="fa fa-caret-down fa-fw"></i></h2>
-                        <div class="timeline-month">
-                            <h3 class=" animated fadeInLeft"><a class="monthToggle" href="javascript:;">2月</a><i class="fa fa-caret-down fa-fw"></i></h3>
-                            <ul>
-                                <li class=" ">
-                                    <div class="h4  animated fadeInLeft">
-                                        <p class="date">02月23日 19:33</p>
-                                    </div>
-                                    <p class="dot-circle animated "><i class="fa fa-dot-circle-o"></i></p>
-                                    <div class="content animated fadeInRight">这是2016年2月发表的</div>
-                                    <div class="clear"></div>
-                                </li>
-                                <li class=" ">
-                                    <div class="h4  animated fadeInLeft">
-                                        <p class="date">02月11日 20:29</p>
-                                    </div>
-                                    <p class="dot-circle animated "><i class="fa fa-dot-circle-o"></i></p>
-                                    <div class="content animated fadeInRight">这是2016年2月发表的</div>
-                                    <div class="clear"></div>
-                                </li>
-                                <li class=" ">
-                                    <div class="h4  animated fadeInLeft">
-                                        <p class="date">02月10日 20:35</p>
-                                    </div>
-                                    <p class="dot-circle animated "><i class="fa fa-dot-circle-o"></i></p>
-                                    <div class="content animated fadeInRight">这是2016年2月发表的</div>
-                                    <div class="clear"></div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="timeline-month">
-                            <h3 class=" animated fadeInLeft"><a class="monthToggle" href="javascript:;">1月</a><i class="fa fa-caret-down fa-fw"></i></h3>
-                            <ul>
-                                <li class=" ">
-                                    <div class="h4  animated fadeInLeft">
-                                        <p class="date">01月23日 19:33</p>
-                                    </div>
-                                    <p class="dot-circle animated "><i class="fa fa-dot-circle-o"></i></p>
-                                    <div class="content animated fadeInRight">这是2016年1月发表的</div>
-                                    <div class="clear"></div>
-                                </li>
-                                <li class=" ">
-                                    <div class="h4  animated fadeInLeft">
-                                        <p class="date">01月11日 20:29</p>
-                                    </div>
-                                    <p class="dot-circle animated "><i class="fa fa-dot-circle-o"></i></p>
-                                    <div class="content animated fadeInRight">这是2016年1月发表的</div>
-                                    <div class="clear"></div>
-                                </li>
-                                <li class=" ">
-                                    <div class="h4  animated fadeInLeft">
-                                        <p class="date">01月10日 20:35</p>
-                                    </div>
-                                    <p class="dot-circle animated "><i class="fa fa-dot-circle-o"></i></p>
-                                    <div class="content animated fadeInRight">这是2016年1月发表的</div>
-                                    <div class="clear"></div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>*@
-                    <h1 style="padding-top:4px;padding-bottom:2px;margin-top:40px;"><i class="fa fa-hourglass-end"></i>THE END</h1>
+                    <h1 style="padding-top: 4px; padding-bottom: 2px; margin-top: 40px;">
+                        <i class="fa fa-hourglass-end"></i>THE END
+                    </h1>
+
                 </div>
             </div>
         </div>
@@ -128,8 +74,9 @@
 @section Scripts
 {
     <script>
-        layui.use(['jquery'], function () {
+        layui.use(['jquery','layer'], function () {
             var $ = layui.jquery;
+            var layer = layui.layer;         
             $('.monthToggle').click(function () {
                 $(this).parent('h3').siblings('ul').slideToggle('slow');
                 $(this).siblings('i').toggleClass('fa-caret-down fa-caret-right');
@@ -137,9 +84,7 @@
             $('.yearToggle').click(function () {
                 $(this).parent('h2').siblings('.timeline-month').slideToggle('slow');
                 $(this).siblings('i').toggleClass('fa-caret-down fa-caret-right');
-            });
-
+            });     
         });
-
     </script>
 }

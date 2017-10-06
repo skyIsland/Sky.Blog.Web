@@ -35,11 +35,6 @@
     $('.layui-nav-item').click(function () {
         $(this).addClass('layui-this').siblings().removeClass('layui-this');
     });
-    //子栏目导航点击事件
-    $('.child-nav span').click(function () {
-        //layer.msg('切换到相应栏目');
-        $(this).addClass('child-nav-btn-this').siblings().removeClass('child-nav-btn-this');
-    });
 
     //侧边导航开关点击事件
     $('.blog-navicon').click(function () {

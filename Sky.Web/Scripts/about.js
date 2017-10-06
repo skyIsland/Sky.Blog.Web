@@ -2,7 +2,7 @@
     var element = layui.element;
     var form = layui.form;
     var $ = layui.jquery;
-    var layedit = layui.layedit;
+    var layedit = layui.layedit;   
 
     //评论和留言的编辑器
     var editIndex = layedit.build('remarkEditor', {
