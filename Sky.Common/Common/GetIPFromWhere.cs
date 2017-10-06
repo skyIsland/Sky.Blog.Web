@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,27 +28,20 @@ namespace Sky.Common.Common
             response.EnsureSuccessStatusCode();
             var jss=new JavaScriptSerializer();
             var resultStr = await response.Content.ReadAsStringAsync();
-            var result = jss.Deserialize<IpPosition>(resultStr);
-            if (result.status.Equals("1"))
+            try
             {
-                msg = result.province + result.city;
+                var result = jss.Deserialize<IpPosition>(resultStr);
+                if (result.status.Equals("1"))
+                {
+                    msg = result.province +","+result.city;
+                }
             }
-            return msg;
-            //http.GetAsync(url).ContinueWith(p =>
-            //{
-            //    var response = p.Result;
-            //    response.EnsureSuccessStatusCode();
-            //    response.Content.ReadAsStringAsync().ContinueWith(x =>
-            //    {
-            //        var jss= new JavaScriptSerializer();
-            //        var result = jss.Deserialize<IpPosition>(x.Result);
-            //        if (result.status.Equals("1"))
-            //        {
-
-            //        }
-            //    });
-            //});
-            
+            catch (Exception)
+            {
+                msg = "错误,无法解析Ip来源!";
+            }
+           
+            return msg;                     
         }
         /// <summary>  
         /// Ip解析  
@@ -62,11 +56,19 @@ namespace Sky.Common.Common
             var http = new WebClient {Encoding = Encoding.UTF8};
             var response = http.DownloadString(url);          
             var jss = new JavaScriptSerializer();
-            var result = jss.Deserialize<IpPosition>(response);
-            if (result.status.Equals("1"))
+            try
             {
-                msg = result.province + result.city;
+                var result = jss.Deserialize<IpPosition>(response);
+                if (result.status.Equals("1"))
+                {
+                    msg = result.province + "," + result.city;
+                }
             }
+            catch (Exception)
+            {
+                msg = "错误,无法解析Ip来源!";
+            }
+
             return msg;            
         }
     }

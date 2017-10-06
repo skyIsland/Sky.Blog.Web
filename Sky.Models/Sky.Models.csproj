@@ -60,6 +60,10 @@
     <Compile Include="时光轴.cs" />
     <Compile Include="用户.Biz.cs" />
     <Compile Include="用户.cs" />
+    <Compile Include="省市数据.Biz.cs" />
+    <Compile Include="省市数据.cs" />
+    <Compile Include="访问记录.Biz.cs" />
+    <Compile Include="访问记录.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -70,6 +74,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="IpFrom.xml" />
     <Content Include="T4\data.xml" />
     <Content Include="T4\TimeLine.xml" />
     <Content Include="生成实体类.tt">

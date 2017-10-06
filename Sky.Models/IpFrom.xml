@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Tables Version="9.6.6456.33157" NameSpace="Sky.Models" ConnName="Conn" Output="">
+  <Table Name="PositionData" Description="省市数据" DbType="SqlServer">
+    <Columns>
+      <Column Name="Id" DataType="Int32" Identity="True" PrimaryKey="True" />
+      <Column Name="Province" DataType="String" Description="省份" />
+      <Column Name="City" DataType="String" Description="城市" />
+      <Column Name="ParentId" DataType="Int32" Description="父级Id" />
+    </Columns>
+  </Table>
+  <Table Name="IpInfo" Description="访问记录" DbType="SqlServer">
+    <Columns>
+      <Column Name="Id" DataType="Int32" Identity="True" PrimaryKey="True" />
+      <Column Name="Ip" DataType="String" Description="Ip" />
+      <Column Name="ProvinceId" DataType="Int32" Description="省份Id" />
+      <Column Name="CityId" DataType="Int32" Description="城市Id" />
+      <Column Name="AddTime" DataType="DateTime" Description="访问时间" />
+    </Columns>
+  </Table>
+</Tables>
