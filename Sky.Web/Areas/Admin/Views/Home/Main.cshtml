@@ -1,4 +1,6 @@
-﻿
+﻿@using System.Configuration
+@using Sky.Common.Common
+
 @{
     Layout = null;
     var user = Sky.Core.Login.UserLogin.CurrUserData;
@@ -112,7 +114,7 @@
                         <p style="padding: 10px 15px; margin-bottom: 20px; margin-top: 10px; border:1px solid #ddd;display:inline-block;">
                             上次登陆
                             <span style="padding-left:1em;">IP：@user.LastLoginIp</span>
-                            <span style="padding-left:1em;">地点：广西南宁</span>
+                            <span style="padding-left:1em;">地点：@GetIpFromWhere.GetPosition(user.LastLoginIp, ConfigurationManager.AppSettings["IpKey"]).Replace(",","")</span>
                             <span style="padding-left:1em;">时间：@user.LastLoginTime.ToString("yyyy-MM-dd HH:mm:ss")</span>
                         </p>
                         <fieldset class="layui-elem-field layui-field-title">

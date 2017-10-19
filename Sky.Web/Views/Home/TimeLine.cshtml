@@ -18,8 +18,8 @@
         </blockquote>
         <div class="blog-main">
             <div class="child-nav shadow">
-                <span class="child-nav-btn child-nav-btn-this" onclick="javascript: location.href = '/Home/TimeLine/';">时光轴</span>
-                <span class="child-nav-btn" onclick="javascript: location.href = '/Home/FromWhere/';">网站来源分析</span>
+                <a class="child-nav-btn child-nav-btn-this" href="/Home/TimeLine">时光轴</a>
+                <a class="child-nav-btn" href="/Home/FromWhere">网站来源分析</a>
             </div>
             <div class="timeline-box shadow">
                 <div class="timeline-main">
@@ -78,11 +78,11 @@
             var $ = layui.jquery;
             var layer = layui.layer;         
             $('.monthToggle').click(function () {
-                $(this).parent('h3').siblings('ul').slideToggle('slow');
+                $(this).parent('h3').next('ul').slideToggle('slow');
                 $(this).siblings('i').toggleClass('fa-caret-down fa-caret-right');
             });
             $('.yearToggle').click(function () {
-                $(this).parent('h2').siblings('.timeline-month').slideToggle('slow');
+                $(this).parent('h2').next('.timeline-month').slideToggle('slow');
                 $(this).siblings('i').toggleClass('fa-caret-down fa-caret-right');
             });     
         });

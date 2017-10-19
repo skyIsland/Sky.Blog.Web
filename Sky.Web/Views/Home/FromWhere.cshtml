@@ -18,8 +18,8 @@
         </blockquote>
         <div class="blog-main">
             <div class="child-nav shadow">
-                <span class="child-nav-btn" onclick="javascript: location.href = '/Home/TimeLine/';">时光轴</span>
-                <span class="child-nav-btn child-nav-btn-this" onclick="javascript: location.href = '/Home/FromWhere/';">网站来源分析</span>
+                <a class="child-nav-btn" href="/Home/TimeLine/">时光轴</a>
+                <a class="child-nav-btn child-nav-btn-this" href="/Home/FromWhere/">网站来源分析</a>
             </div>         
             <div class="timeline-box shadow">
                 <div class="timeline-main" id="map">
@@ -83,10 +83,11 @@
                             }
                         }
                     ]
-                };
+                };              
                 $.ajax({
-                    url: 'GetHitsFromProvice'
+                    url: '/Home/GetHitsFromProvice'
                     , type: 'Get'
+                    , datType: "JSON"
                     , data: {}
                     , success: function (result) {
                         if (result.Result) {
