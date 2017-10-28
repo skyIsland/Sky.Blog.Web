@@ -123,11 +123,11 @@ namespace Sky.Web.Controllers
         public ActionResult GetHitsFromProvice()
         {
             //按省份分组
-            var data = IpInfo.FindAll().GroupBy(p => p.ProvinceId).OrderByDescending(p=>p.Count()).ToList();
+            var data = IpInfo.Meta.Cache.Entities.GroupBy(p => p.ProvinceId).OrderByDescending(p=>p.Count()).ToList();
             var provice=new List<object>();
             data.ForEach(p =>
             {
-                var strName = (PositionData.Find(PositionData._.Id, p.Key)??new PositionData()).Province;
+                var strName = (PositionData.Meta.Cache.Entities.FirstOrDefault(f=>f.Id==p.Key)??new PositionData()).Province;
                 provice.Add(new {key=strName,value=p.Count()});
             });
             var result = new AjaxResult {Data = provice, Result = true};
