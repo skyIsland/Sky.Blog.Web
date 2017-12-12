@@ -81,7 +81,7 @@ layui.define(['table', 'form'], function (exports) {
                 title: '编辑文章',
                 shade: 0.4,
                 shadeClose: true,
-                area: ['800px', '500px'],
+                area: ['1000px', '800px'],
                 anim: 1,
                 skin: 'pm-layer-login',
                 content: "/Admin/Article/Edit/" + data.Id
@@ -96,7 +96,7 @@ layui.define(['table', 'form'], function (exports) {
             title: '添加文章',
             shade: 0.4,
             shadeClose: true,
-            area: ['800px', '500px'],
+            area: ['1000px', '800px'],
             anim: 1,
             skin: 'pm-layer-login',
             content: "/Admin/Article/Add?ArticlassId=" + val

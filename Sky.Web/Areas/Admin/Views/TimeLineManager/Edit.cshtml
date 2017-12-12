@@ -2,31 +2,57 @@
 @{
     ViewBag.Title = "添加/修改时光轴";
 }
+@section Head{
+    <style>
+        .site-title {
+            margin: 30px 0 20px;
+        }
+        .site-block {
+            padding: 20px;
+            border: 1px solid #eee;
+            margin: 10px 20px;
+        }
+        .site-text {
+            position: relative;
+        }
+        #Desc {
+            line-height: 30px;          
+        }
+    </style>
+}
+<div class="site-title">
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend> <a name="use">时光轴</a></legend>
+    </fieldset> 
+</div>    
 
-<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-    <legend>时光轴</legend>
-</fieldset>
-<form class="layui-form" action="">
-    <div class="layui-form-item">
-        <label class="layui-form-label">显示时间</label>
-        <div class="layui-input-block">
-            <input type="text" name="Time" id="Time" value="@(Model.Time>DateTime.Now? Model.Time.ToString("yyyy-MM-dd HH:mm:ss"): DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))" />   
+<div class="site-text site-block">
+    <form class="layui-form" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label" for="Time">显示时间</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input" name="Time" id="Time" value="@(Model.Time > DateTime.Now ? Model.Time.ToString("yyyy-MM-dd HH:mm:ss") : DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))"/>
+            </div>
+        </div>   
+
+        
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">描述</label>
+            <div class="layui-input-block">
+                <input type="hidden" name="Id" value="@Model.Id"/>
+                <textarea name="Desc" id="Desc" placeholder="请输入内容" class="layui-textarea">@Model.Desc</textarea>
+            </div>
         </div>
-    </div>   
-    <div class="layui-form-item">
-        <label class="layui-form-label">描述</label>
-        <div class="layui-input-block">
-            <input type="hidden" name="Id" value="@Model.Id"/>
-            <textarea type="text" style="width: 90%;"name="Desc" lay-verify="Desc" autocomplete="off" value="@Model.Desc" placeholder="请输入描述..." class="layui-input">@Model.Desc</textarea>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="saves">保存</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
         </div>
-    </div>
-    <div class="layui-form-item">
-        <div class="layui-input-block">
-            <button class="layui-btn" lay-submit lay-filter="saves">保存</button>
-            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-        </div>
-    </div>
-</form>
+    </form>
+</div>
+                                 
+
 
 @section scripts{
     <script>

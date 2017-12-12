@@ -4,6 +4,9 @@
     ViewBag.Title = "编辑文章";
     var allClass = ArticleClass.FindAll();
 }
+@section Head{    
+    <link href="~/Scripts/plug/editormd/css/editormd.css" rel="stylesheet" />
+}
 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
     <legend>文章编辑</legend>
 </fieldset>

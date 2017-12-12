@@ -56,20 +56,20 @@
                         <dl class="layui-nav-child">
                             <dd><a href="javascript:;" data-url="/Admin/ArticleClass/Index" data-id="1">分类管理</a></dd>
                             <dd><a href="javascript:;" data-url="/Admin/Article/Index" data-id="2">文章管理</a></dd>
-                            <dd><a href="javascript:;" data-url="/Admin/Home/DataList" data-id="3">资源管理</a></dd>
+                            @*<dd><a href="javascript:;" data-url="/Admin/Home/DataList" data-id="3">资源管理</a></dd>*@
                             <dd><a href="javascript:;" data-url="/Admin/TimeLineManager/Index" data-id="4">时光轴管理</a></dd>
-                            <dd><a href="javascript:;">笔记本管理</a></dd>
+                            @*<dd><a href="javascript:;">笔记本管理</a></dd>
                             <dd><a href="javascript:;" data-url="/Admin/Home/DataList" data-id="5">文章回收站</a></dd>
-                            <dd><a href="javascript:;">资源回收站</a></dd>
+                            <dd><a href="javascript:;">资源回收站</a></dd>*@
                         </dl>
                     </li>
-                    <li class="layui-nav-item">
+                    @*<li class="layui-nav-item">
                         <a href="javascript:;"><i class="fa fa-user"></i>用户管理</a>
                         <dl class="layui-nav-child">
                             <dd><a href="javascript:;">全部用户</a></dd>
                             <dd><a href="javascript:;">黑名单管理</a></dd>
                         </dl>
-                    </li>
+                    </li>*@
                     <li class="layui-nav-item">
                         <a href="javascript:;"><i class="fa fa-wrench"></i>扩展管理</a>
                         <dl class="layui-nav-child">
@@ -81,7 +81,7 @@
                             <dd><a href="javascript:;" data-url="/Admin/Home/DataList" data-id="7">留言管理</a></dd>
                         </dl>
                     </li>
-                    <li class="layui-nav-item">
+                    @*<li class="layui-nav-item">
                         <a href="javascript:;"><i class="fa fa-cog"></i>系统配置</a>
                         <dl class="layui-nav-child">
                             <dd><a href="javascript:;">SEO配置</a></dd>
@@ -95,7 +95,7 @@
                         <dl class="layui-nav-child">
                             <dd><a href="javascript:;">操作日志</a></dd>
                         </dl>
-                    </li>
+                    </li>*@
                 </ul>
             </div>
         </div>
@@ -121,30 +121,30 @@
                             <legend>统计信息</legend>
                             <div class="layui-field-box">
                                 <div style="display: inline-block; width: 100%;">
-                                    <div class="ht-box layui-bg-blue">
-                                        <p>123</p>
-                                        <p>用户总数</p>
-                                    </div>
-                                    <div class="ht-box layui-bg-red">
-                                        <p>32</p>
-                                        <p>今日注册</p>
-                                    </div>
+                                    @*<div class="ht-box layui-bg-blue">
+        <p>123</p>
+        <p>用户总数</p>
+    </div>
+    <div class="ht-box layui-bg-red">
+        <p>32</p>
+        <p>今日注册</p>
+    </div>*@
                                     <div class="ht-box layui-bg-green">
-                                        <p>55</p>
-                                        <p>今日登陆</p>
+                                        <p>@user.LoginCount</p>
+                                        <p>登陆次数</p>
                                     </div>
                                     <div class="ht-box layui-bg-orange">
                                         <p>123</p>
                                         <p>文章总数</p>
                                     </div>
-                                    <div class="ht-box layui-bg-cyan">
+                                    @*<div class="ht-box layui-bg-cyan">
                                         <p>321</p>
                                         <p>资源总数</p>
                                     </div>
                                     <div class="ht-box layui-bg-black">
                                         <p>231</p>
                                         <p>笔记总数</p>
-                                    </div>
+                                    </div>*@
                                 </div>
                             </div>
                         </fieldset>
