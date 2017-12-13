@@ -13,6 +13,7 @@ namespace Sky.Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.MapRoute("manager", "manager", new { controller = "Login", action = "Index", area = "Admin" });
             routes.MapRoute(
                  "Default",
                  "{controller}/{action}/{id}",
@@ -21,6 +22,7 @@ namespace Sky.Web
                      "Sky.Web.Controllers"
                  }
             );
+         
         }
     }
 }
