@@ -11,6 +11,7 @@ using System.Web.Mvc;
 using Sky.Common.Web;
 using Sky.Core.Login;
 using Sky.Models;
+using Sky.Web.Filter;
 
 namespace Sky.Web.Controllers
 {
@@ -95,104 +96,95 @@ namespace Sky.Web.Controllers
             }
             return File(file.FilesInfo.FilePath, file.FilesInfo.FileType);
         }
-        
-        public ActionResult SaveFiles(Guid? InfoID,bool isCut=false)
-        {
-            //文件大小限制,单位MB
-            var result = new LayUiResult();
-            //string state = "SUCCESS";
-            //string err = "";
-            //string fname = "", fFileType = "";
-            //if (UserLogin.CurrUserData == null)
-            //    return Json(new { fileId = "", success = false, msg = "无权限，登陆超时，请重新登陆后再操作" });
-             InfoID = Guid.NewGuid();
+        [EntityAuthorize]
+        public ActionResult SaveFiles(bool isCut=false,bool isMd=false)
+        {                    
+            var infoId = Guid.NewGuid();
             if (Request.Files.Count > 0)
             {
                 HttpPostedFileBase file = Request.Files[0];
                 if (file == null || file.ContentLength == 0)
                 {
-                    result.msg = "未选择文件或者文件大小为0";
+                    if (isMd)
+                    {
+                        return Json(new EditorMdResult() {message = "未选择文件或者文件大小为0"});
+                    }
+                    return Json(new LayUiResult { msg = "未选择文件或者文件大小为0" });
+                }
+                FileInfo fo = new FileInfo(file.FileName);
+                int intDocLen = file.ContentLength;
+                byte[] Docbuffer = new byte[intDocLen];
+                file.InputStream.Read(Docbuffer, 0, intDocLen);
+                MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
+                byte[] bytHash = md5.ComputeHash(Docbuffer);
+                string FileHash = BitConverter.ToString(bytHash);
+                FilesInfo files = FilesInfo.FindBybytHash(FileHash);
+                string basePath = "/BaseUploadFiles/" + DateTime.Now.ToString("yyyy/MM/dd/") + FileHash.Replace("-", "") + fo.Extension;
+                if (files == null)
+                {
+                    files = new FilesInfo();
+                    files.CreateDate = DateTime.Now;
+                    //files.FileContent = Docbuffer;
+                    files.FileExt = fo.Extension;
+                    files.FileSize = FormatFileSize(file.ContentLength);
+                    files.FileName = fo.Name;
+                    files.FileType = file.ContentType;
+                    files.IsImg = CheckFileIsImg(files.FileExt);
+                    files.bytHash = FileHash;
+                    files.FilePath = basePath;
+                    files.Insert();
                 }
                 else
                 {
-                    FileInfo fo = new FileInfo(file.FileName);
-                    int intDocLen = file.ContentLength;
-                    byte[] Docbuffer = new byte[intDocLen];
-                    file.InputStream.Read(Docbuffer, 0, intDocLen);
-                    MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
-                    byte[] bytHash = md5.ComputeHash(Docbuffer);
-                    string FileHash = BitConverter.ToString(bytHash);
-                    FilesInfo files = FilesInfo.FindBybytHash(FileHash);
-                    string basePath = "/BaseUploadFiles/" + DateTime.Now.ToString("yyyy/MM/dd/") + FileHash.Replace("-", "") + fo.Extension;
-                    if (files == null)
-                    {
-                        files = new FilesInfo();
-                        files.CreateDate = DateTime.Now;
-                        //files.FileContent = Docbuffer;
-                        files.FileExt = fo.Extension;
-                        files.FileSize = FormatFileSize(file.ContentLength);
-                        files.FileName = fo.Name;
-                        files.FileType = file.ContentType;
-                        files.IsImg = CheckFileIsImg(files.FileExt);
-                        files.bytHash = FileHash;
-                        files.FilePath = basePath;
-                        files.Insert();
-                    }
-                    else
-                    {
-                        basePath = files.FilePath;
-                    }
-                    System.IO.FileInfo sf = new FileInfo(Server.MapPath(basePath));
-                    if (!sf.Exists || sf.Length == 0)
-                    {
-                        if (!Directory.Exists(sf.DirectoryName))
-                        {
-                            Directory.CreateDirectory(sf.DirectoryName);
-                        }
-                        using (FileStream fs = new FileStream(sf.FullName, FileMode.Create))
-                        {
-                            BinaryWriter bw = new BinaryWriter(fs);
-                            bw.Write(Docbuffer);
-                            bw.Close();
-                        }
-                    }
-                    Docbuffer = null;
-                    UploadFiles fileInfo;
-                    //if (fileInfo == null)
-                    //{
-                        fileInfo = new UploadFiles();
-                        fileInfo.Id = InfoID.Value;
-                        fileInfo.CreatBy = UserLogin.CurrUserData == null ? "" : UserLogin.CurrUserData.LoginName;
-                        fileInfo.FilesInfoID = files.ID;
-                        fileInfo.Insert();
-                    //}
-                    //else if (fileInfo.FilePath != files.FilePath)
-                    //{
-                    //    fileInfo.FilePath = files.FilePath;
-                    //    fileInfo.Update();
-                    //}
-                    //fname = fo.Name;
-                    //fFileType = fo.Extension;
-                    var data=new MyData
-                    {
-                        src = fileInfo.FilesInfo.IsImg
-                            ? "/UploadFile/GetFile/?id=" + fileInfo.Id + (isCut?"&width=300&height=150":"")
-                            : "/UploadFile/GetFile/" + fileInfo.Id,
-                        title = files.FileName
-                    };
-                    return Json(new LayUiResult {
-                            code = 0,
-                            data= data,
-                            msg = "上传成功"
-                        });
+                    basePath = files.FilePath;
                 }
+                System.IO.FileInfo sf = new FileInfo(Server.MapPath(basePath));
+                if (!sf.Exists || sf.Length == 0)
+                {
+                    if (!Directory.Exists(sf.DirectoryName))
+                    {
+                        Directory.CreateDirectory(sf.DirectoryName);
+                    }
+                    using (FileStream fs = new FileStream(sf.FullName, FileMode.Create))
+                    {
+                        BinaryWriter bw = new BinaryWriter(fs);
+                        bw.Write(Docbuffer);
+                        bw.Close();
+                    }
+                }
+                Docbuffer = null;
+                UploadFiles fileInfo;
+                fileInfo = new UploadFiles();
+                fileInfo.Id = infoId;
+                fileInfo.CreatBy = UserLogin.CurrUserData == null ? "" : UserLogin.CurrUserData.LoginName;
+                fileInfo.FilesInfoID = files.ID;
+                fileInfo.Insert();
+
+                var fileUrl = fileInfo.FilesInfo.IsImg
+                    ? "/UploadFile/GetFile/?id=" + fileInfo.Id + (isCut ? "&width=300&height=150" : "")
+                    : "/UploadFile/GetFile/" + fileInfo.Id;
+                if (isMd)
+                {
+                    return Json(new EditorMdResult() {success = 1, message = "上传成功", url = fileUrl });
+                }
+                var data=new MyData
+                {
+                    src =fileUrl,
+                    title = files.FileName
+                };
+                return Json(new LayUiResult {
+                    code = 0,
+                    data= data,
+                    msg = "上传成功"
+                });
             }
-            else
+            if (isMd)
             {
-                result.msg = "请选择要上传的文件";
-            }
-            return Json(result);
+                return Json(new EditorMdResult() {message = "请选择要上传的文件"});
+            }          
+            return Json(new LayUiResult { msg = "请选择要上传的文件" });
         }
+
         /// <summary>
         /// 删除文件
         /// </summary>

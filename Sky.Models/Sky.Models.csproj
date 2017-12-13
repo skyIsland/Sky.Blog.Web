@@ -74,6 +74,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Article.xml" />
+    <Content Include="Tag.xml" />
     <Content Include="IpFrom.xml" />
     <Content Include="T4\data.xml" />
     <Content Include="T4\TimeLine.xml" />

@@ -28,13 +28,18 @@
         {
 		    define(["jquery"], factory);  // for Sea.js
         }
-	} 
+    }
+    else if (layui && layui.define) {
+	    layui.define('jquery',function(exports) {
+	        exports('editormd',factory(layui.jquery));
+	    });
+	}
 	else
 	{ 
         window.editormd = factory();
 	}
     
-}(function() {    
+}(function (jQuery) {    
 
     /* Require.js assignment replace */
     
@@ -3365,7 +3370,7 @@
 
     // Emoji graphics files url path
     editormd.emoji     = {
-        path  : "http://www.emoji-cheat-sheet.com/graphics/emojis/",
+        path: "http://www.webpagefx.com/tools/emoji-cheat-sheet/graphics/emojis/",
         ext   : ".png"
     };
 

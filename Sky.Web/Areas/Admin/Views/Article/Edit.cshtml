@@ -46,7 +46,7 @@
     @*<div class="layui-form-item">
         <label class="layui-form-label">标签</label>
         <div class="layui-input-block">
-            <input type="text" name="tags" lay-verify="tags" placeholder="这里是输入标签的呢，如果有多个标签的话，就用逗号分割开吧，记得她是英文逗号才有效的呢..." autocomplete="off" class="layui-input">
+            <input type="text" name="Tag" lay-verify="tags" placeholder="这里是输入标签的呢，如果有多个标签的话，就用逗号分割开吧，记得她是英文逗号才有效的呢..." autocomplete="off" class="layui-input">
         </div>
     </div>*@
     @*<div class="layui-form-item">
@@ -103,7 +103,8 @@
     </div>*@
     <div class="layui-form-item layui-form-text">
         <label class="layui-form-label">内容</label>
-        <div class="layui-input-block">
+        <div class="layui-input-block" id="editormdContent">
+            <textarea id="editormdContent-doc" name="editormdContent-doc" style="display:none;">@Model.Content</textarea>
             <textarea class="layui-textarea layui-hide" required lay-verify="Content" id="Content" name="Content" style="display: none;">@Model.Content</textarea>
         </div>
     </div>
@@ -117,100 +118,16 @@
 </form>
 
 @section scripts{
-    <script>
-        layui.use(['form', 'layer', 'jquery','layedit','upload'], function () {
-            var form = layui.form,
-                layer = layui.layer,
-                layedit = layui.layedit,
-                $ = layui.jquery,
-                upload = layui.upload;
-            
-            //封面图片
-            //执行实例
-            var uploadInst = upload.render({
-                elem: '#test1' //绑定元素
-                , url: '/UploadFile/SaveFiles' //上传接口
-                , done: function (res) {
-                    //上传完毕回调
-                    if (res.code === 0) {
-                        $('#showImg').attr('src', res.data.src);
-                        $('#PhotoUrl').val(res.data.src);
-                    }
-                }
-                , error: function (result) {
-                    //请求异常回调
-                    layer.msg(result.Message);
-                }
-            });
-            //创建一个编辑器           
-            var editIndex = layedit.build('Content', {
-                height: 300,
-                uploadImage: {
-                    url: '/UploadFile/SaveFiles?isCut=true'
-                },
-                tool: [
-                    'strong' //加粗
-                    ,'italic' //斜体
-                    ,'underline' //下划线
-                    ,'del' //删除线
-  
-                    ,'|' //分割线
-  
-                    ,'left' //左对齐
-                    ,'center' //居中对齐
-                    ,'right' //右对齐
-                    ,'link' //超链接
-                    ,'unlink' //清除链接
-                    ,'face' //表情
-                    ,'image' //插入图片
-                    ,'help' //帮助
-                ]
-            });
-            //自定义验证规则
-            form.verify({
-                Title: function (value) {
-                    if (value.length < 2) return '标题至少也得2个字符吧';
-                    if (value.length > 50) return '标题写得太多啦，不要超过50个字符好吗？';
-                },
-                ArticlassId: function (value) {
-                    if (value === '') return '请选择分类啦^_^';
-                },
-                Author: function (value) {
-                    if (value === '') return '至少得告诉人家，这篇文章是谁写的吧？';
-                },
-                //tags: function (value) {
-                //    if (value === '') return '给她贴个标签呗，可以用逗号分割哦。';
-                //},
-                Content: function (value) {
-                    return layedit.sync(editIndex);
-                }
-            });           
-            //监听提交
-            form.on('submit(cg)', function (data) {
-                //将状态设置为0
-                $('input[name=State]').val(0);
-                $('#publish').trigger('click');
-                return false;
-            });
-            form.on('submit(publish)', function (data) {
-                //将状态设置为1
-                data.field.State = 1;               
-                $.post('/Admin/Article/Save', data.field, function (result) {
-                    if (result.Result) {
-                        layer.msg(result.Message, { icon: 6 },function() {
-                            parent.tables.reload();
-                            //假设这是iframe页
-                            var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-                            parent.layer.close(index); //再执行关闭
-                        });                     
-                    } else {
-                        console.log(result.Message);
-                        layer.msg("出错了,请联系管理员!", { icon: 5});
-                    }
-                });
-                return false;
-            });            
+   <script>
+        layui.config({
+            base: '/scripts/'
+        }).use('articleEdit');
+
+        //你也可以忽略 base 设定的根目录，直接在 extend 指定路径（主要：该功能为 layui 2.2.0 新增）
+        layui.extend({
+            editormd: 'plug/editormd/editormd' // {/}的意思即代表采用自有路径，即不跟随 base 路径
         });
-    </script>
+</script>
+  
 }
 

@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Tables Version="9.6.6456.33157" NameSpace="Sky.Models" ConnName="Conn" Output="">
+<Table Name="Tag" Description="标签" DbType="SqlServer">
+  <Columns>
+    <Column Name="Id" DataType="Int32" Identity="True" Description="Id" Primary="true" />  
+    <Column Name="Name" DataType="String" Description="标签名" />
+  </Columns>
+</Table>
+</Tables>

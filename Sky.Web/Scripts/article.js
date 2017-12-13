@@ -57,7 +57,7 @@ layui.define(['table', 'form'], function (exports) {
         var data = obj.data;
         if (obj.event === 'del') {
             var msg = '你真的要把  <span style="color:red;">' +
-                data.ClassName +
+                data.Title +
                 '</span> 给删除吗？<img src="' +
                 location.origin +
                 '/Scripts/plug/layui/images/face/4.gif" alt="[可怜]">';

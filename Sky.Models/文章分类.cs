@@ -19,7 +19,7 @@ namespace Sky.Models
         /// <summary>Id</summary>
         [DisplayName("Id")]
         [Description("Id")]
-        [DataObjectField(false, true, false, 0)]
+        [DataObjectField(true, true, false, 0)]
         [BindColumn("Id", "Id", "int")]
         public Int32 Id { get { return _Id; } set { if (OnPropertyChanging(__.Id, value)) { _Id = value; OnPropertyChanged(__.Id); } } }
 

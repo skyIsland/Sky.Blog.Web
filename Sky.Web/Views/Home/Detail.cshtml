@@ -5,10 +5,9 @@
 }
 @section Head
 {
-    <!-- 比较好用的代码着色插件 -->
-    <link href="~/Content/css/prettify.css" rel="stylesheet" />
     <!-- 本页样式表 -->
     <link href="~/Content/css/detail.css" rel="stylesheet" />
+    <link href="~/Scripts/plug/editormd/css/editormd.css" rel="stylesheet" />
 }
 <!-- 主体（一般只改变这里的内容） -->
 <div class="blog-body">
@@ -30,9 +29,14 @@
                         <span>作者：@Model.Author</span>
                         <span>浏览量：@Model.Hits</span>
                     </div>
-                    <div class="article-detail-content">
-                       @Html.Raw(Model.Content)
+                    <div id="test-editormd-view">
+                        <textarea style="display:none;" name="test-editormd-markdown-doc">  </textarea>               
                     </div>
+                    @Html.HiddenFor(p=>p.Content)
+              
+                    @*<div class="article-detail-content">
+                       @Html.Raw(Model.Content)
+                    </div>*@
                 </div>
                 <!-- 评论区域 -->
                 @*<div class="blog-module shadow" style="box-shadow: 0 1px 8px #a6a6a6;">
@@ -111,3 +115,44 @@
         </div>
     </div>
 </div>
+@section Scripts
+{
+    <script src="~/Scripts/plug/editormd/lib/marked.min.js"></script>
+    <script src="~/Scripts/plug/editormd/lib/prettify.min.js"></script>
+    <script src="~/Scripts/plug/editormd/lib/raphael.min.js"></script>
+    <script src="~/Scripts/plug/editormd/lib/underscore.min.js"></script>
+    <script src="~/Scripts/plug/editormd/lib/sequence-diagram.min.js"></script>
+    <script src="~/Scripts/plug/editormd/lib/flowchart.min.js"></script>
+    <script src="~/Scripts/plug/editormd/lib/jquery.flowchart.min.js"></script>
+    <script>
+        //你也可以忽略 base 设定的根目录，直接在 extend 指定路径（主要：该功能为 layui 2.2.0 新增）
+        layui.extend({
+            editormd: '/Scripts/plug/editormd/editormd' // {/}的意思即代表采用自有路径，即不跟随 base 路径
+        });
+        layui.use(['jquery', 'editormd'],
+            function() {
+                var $ = layui.jquery;
+                var editormd = layui.editormd;
+                $(function() {                  
+                    editormd.markdownToHTML("test-editormd-view",
+                        {
+                            markdown: $('#Content').val(), //+ "\r\n" + $("#append-test").text(),
+                            //htmlDecode      : true,       // 开启 HTML 标签解析，为了安全性，默认不开启
+                            htmlDecode: "style,script,iframe", // you can filter tags decode
+                            //toc             : false,
+                            tocm: true, // Using [TOCM]
+                            //tocContainer    : "#custom-toc-container", // 自定义 ToC 容器层
+                            //gfm             : false,
+                            //tocDropdown     : true,
+                            // markdownSourceCode : true, // 是否保留 Markdown 源码，即是否删除保存源码的 Textarea 标签
+                            emoji: true,
+                            taskList: true,
+                            tex: true, // 默认不解析
+                            flowChart: true, // 默认不解析
+                            sequenceDiagram: true // 默认不解析
+                        });                         
+                });
+
+            });
+    </script>
+}

@@ -31,6 +31,14 @@ namespace Sky.Models
         [BindColumn("ArticlassId", "文章分类ID", "int", Master = true)]
         public Int32 ArticlassId { get { return _ArticlassId; } set { if (OnPropertyChanging(__.ArticlassId, value)) { _ArticlassId = value; OnPropertyChanged(__.ArticlassId); } } }
 
+        private Int32 _TagID;
+        /// <summary>标签关联ID</summary>
+        [DisplayName("标签关联ID")]
+        [Description("标签关联ID")]
+        [DataObjectField(false, false, false, 0)]
+        [BindColumn("TagID", "标签关联ID", "int", Master = true)]
+        public Int32 TagID { get { return _TagID; } set { if (OnPropertyChanging(__.TagID, value)) { _TagID = value; OnPropertyChanged(__.TagID); } } }
+
         private String _Title;
         /// <summary>标题</summary>
         [DisplayName("标题")]
@@ -148,6 +156,7 @@ namespace Sky.Models
                 {
                     case __.Id : return _Id;
                     case __.ArticlassId : return _ArticlassId;
+                    case __.TagID : return _TagID;
                     case __.Title : return _Title;
                     case __.Author : return _Author;
                     case __.Content : return _Content;
@@ -170,6 +179,7 @@ namespace Sky.Models
                 {
                     case __.Id : _Id = Convert.ToInt32(value); break;
                     case __.ArticlassId : _ArticlassId = Convert.ToInt32(value); break;
+                    case __.TagID : _TagID = Convert.ToInt32(value); break;
                     case __.Title : _Title = Convert.ToString(value); break;
                     case __.Author : _Author = Convert.ToString(value); break;
                     case __.Content : _Content = Convert.ToString(value); break;
@@ -198,6 +208,9 @@ namespace Sky.Models
 
             /// <summary>文章分类ID</summary>
             public static readonly Field ArticlassId = FindByName(__.ArticlassId);
+
+            /// <summary>标签关联ID</summary>
+            public static readonly Field TagID = FindByName(__.TagID);
 
             /// <summary>标题</summary>
             public static readonly Field Title = FindByName(__.Title);
@@ -250,6 +263,9 @@ namespace Sky.Models
             /// <summary>文章分类ID</summary>
             public const String ArticlassId = "ArticlassId";
 
+            /// <summary>标签关联ID</summary>
+            public const String TagID = "TagID";
+
             /// <summary>标题</summary>
             public const String Title = "Title";
 
@@ -301,6 +317,9 @@ namespace Sky.Models
 
         /// <summary>文章分类ID</summary>
         Int32 ArticlassId { get; set; }
+
+        /// <summary>标签关联ID</summary>
+        Int32 TagID { get; set; }
 
         /// <summary>标题</summary>
         String Title { get; set; }
