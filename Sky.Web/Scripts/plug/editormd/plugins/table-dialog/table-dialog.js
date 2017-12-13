@@ -13,7 +13,7 @@
 
 	var factory = function (exports) {
 
-		var $            = jQuery;
+		var $            = layui.jquery;
 		var pluginName   = "table-dialog";
 
 		var langs = {
