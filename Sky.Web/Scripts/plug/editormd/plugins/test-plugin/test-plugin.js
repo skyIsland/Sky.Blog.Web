@@ -13,7 +13,7 @@
 
     var factory = function (exports) {
 
-		var $            = jQuery;           // if using module loader(Require.js/Sea.js).
+		var $            = layui.jquery;           // if using module loader(Require.js/Sea.js).
 
 		exports.testPlugin = function(){
 			alert("testPlugin");
@@ -57,7 +57,11 @@
                 factory(editormd);
             });
 		}
-	} 
+	} else if (layui && layui.define) {
+	    layui.define('editormd', function (exports) {
+	        factory(layui.editormd);
+	    });
+	}
 	else
 	{
         factory(window.editormd);

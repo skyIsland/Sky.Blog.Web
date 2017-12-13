@@ -209,7 +209,11 @@
                 factory(editormd);
             });
 		}
-	} 
+	} else if (layui && layui.define) {
+	    layui.define('editormd', function (exports) {
+	        factory(layui.editormd);
+	    });
+	}
 	else
 	{
         factory(window.editormd);

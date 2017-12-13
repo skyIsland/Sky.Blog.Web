@@ -13,7 +13,7 @@
 
 	var factory = function (exports) {
 
-		var $            = jQuery;
+		var $            = layui.jquery;
 		var pluginName   = "goto-line-dialog";
 
 		var langs = {
@@ -148,7 +148,11 @@
                 factory(editormd);
             });
 		}
-	} 
+	} else if (layui && layui.define) {
+	    layui.define('editormd', function (exports) {
+	        factory(layui.editormd);
+	    });
+	}
 	else
 	{
         factory(window.editormd);
