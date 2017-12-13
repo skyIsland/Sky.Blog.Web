@@ -12,22 +12,35 @@
     var editor;
     //layer.msg('傻大蒙好帅啊!');
     $(function () {
-         editor=editormd("editormdContent", {//注意1：这里的就是上面的DIV的id属性值
+        editor = editormd("editormdContent", {//注意1：这里的就是上面的DIV的id属性值
             width: "90%",
             height: 640,
             syncScrolling: "single",
             sequenceDiagram: true,
             flowChart: true,
             tex: true,
-            emoji:true,
+            emoji: true,
             path: "/scripts/plug/editormd/lib/",//注意2：你的路径
             saveHTMLToTextarea: true,//注意3：这个配置，方便post提交表单
 
-             /**上传图片相关配置如下*/
-             imageUpload : true,
-             imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
-             imageUploadURL: "/UploadFile/SaveFiles?isMd=true"//注意你后端的上传图片服务地址
+            /**设置主题颜色*/
+            editorTheme: "pastel-on-dark",
+            theme: "gray",
+            previewTheme: "dark",
+
+
+            /**上传图片相关配置如下*/
+            imageUpload: true,
+            imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+            imageUploadURL: "/UploadFile/SaveFiles?isMd=true"//注意你后端的上传图片服务地址
+
         });
+        //$('select').each(function () {
+        //    var $this = $(this);
+        //    if ($this.data('ingore') == '1') {
+        //        $this.show();
+        //    }
+        //});
     });
 
     //封面图片上传

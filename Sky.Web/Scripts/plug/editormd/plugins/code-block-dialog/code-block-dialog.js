@@ -14,7 +14,7 @@
     var factory = function (exports) {
 		var cmEditor;
 		var pluginName    = "code-block-dialog";
-    
+        var $ = layui.jquery;
 		// for CodeBlock dialog select
 		var codeLanguages = exports.codeLanguages = {
 			asp           : ["ASP", "vbscript"],
@@ -83,7 +83,7 @@
             else 
             {      
                 var dialogHTML = "<div class=\"" + classPrefix + "code-toolbar\">" +
-                                        dialogLang.selectLabel + "<select><option selected=\"selected\" value=\"\">" + dialogLang.selectDefaultText + "</option></select>" +
+                    dialogLang.selectLabel + "<select lay-ignore><option selected=\"selected\" value=\"\">" + dialogLang.selectDefaultText + "</option></select>" +
                                     "</div>" +
                                     "<textarea placeholder=\"coding now....\" style=\"display:none;\">" + selection + "</textarea>";
 

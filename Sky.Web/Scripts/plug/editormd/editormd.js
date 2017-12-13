@@ -30,8 +30,8 @@
         }
     }
     else if (layui && layui.define) {
-	    layui.define('jquery',function(exports) {
-	        exports('editormd',factory(layui.jquery));
+        layui.define(['jquery', 'form'], function (exports) {
+            exports('editormd', factory(layui.jquery, layui.form));
 	    });
 	}
 	else
@@ -39,7 +39,7 @@
         window.editormd = factory();
 	}
     
-}(function (jQuery) {    
+}(function (jQuery,form) {    
 
     /* Require.js assignment replace */
     
@@ -4457,7 +4457,7 @@
         }
 
         editormd.dialogZindex += 2;
-
+        form.render();
         return dialog;
     };
     

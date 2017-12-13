@@ -6,6 +6,7 @@
 }
 @section Head{    
     <link href="~/Scripts/plug/editormd/css/editormd.css" rel="stylesheet" />
+    
 }
 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
     <legend>文章编辑</legend>
@@ -118,6 +119,8 @@
 </form>
 
 @section scripts{
+   @*<script src="~/Scripts/jq.js"></script>
+   <script src="~/Scripts/plug/new-editormd/editormd.js"></script>*@
    <script>
         layui.config({
             base: '/scripts/'
@@ -127,7 +130,6 @@
         layui.extend({
             editormd: 'plug/editormd/editormd' // {/}的意思即代表采用自有路径，即不跟随 base 路径
         });
-</script>
-  
+    </script>  
 }
 
