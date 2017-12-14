@@ -1,7 +1,8 @@
 ﻿@using Sky.Models
 @model Sky.Models.Article
 @{
-    ViewBag.Title = "Detail";
+    ViewBag.Title = Model.Title;
+    ViewBag.Introduce = Model.Introduce;
 }
 @section Head
 {

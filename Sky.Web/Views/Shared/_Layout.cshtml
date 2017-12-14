@@ -4,9 +4,9 @@
     <meta http-equiv="Content-Type" content="text/html; Charset=utf-8">
     <meta http-equiv="Content-Language" content="zh-CN">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <meta name="keywords" content="倚楼听风雨,个人博客,.NET技术分享,程序员博客">
-    <meta name="Description" content="倚楼听风雨，记录学习和成长之路">
-    <title>倚楼听风雨 - 一个.NET小码农的博客</title>
+    <meta name="keywords" content="@(ViewBag.Title??"北苍灵院,丹麦的面包不单卖,个人博客,技术分享")">
+    <meta name="Description" content="@(ViewBag.Introduce??"丹麦的面包不单卖学习成长之路")">
+    <title>@(ViewBag.Title?? "北苍灵院 -一个小码农的博客")</title>
     <link rel="shortcut icon" href="~/Content/images/Logo_40.png" type="image/x-icon">
     <!--Layui-->
     <link href="~/Scripts/plug/layui/css/layui.css" rel="stylesheet" />
@@ -28,8 +28,8 @@
             <a href="javascript:;" class="blog-user layui-hide">
                 <img src="~/Content/images/ShaDaMeng.jpg" alt="ShaDaMeng" title="ShaDaMeng" />
             </a>
-            <!-- 倚楼听风雨 -->
-            <a class="blog-logo" href="/Home/Index">倚楼听风雨</a>
+            <!-- 北苍灵院 -->
+            <a class="blog-logo" href="/Home/Index">北苍灵院</a>
             <!-- 导航菜单 -->
             <ul class="layui-nav" lay-filter="nav">
                 @{
@@ -60,7 +60,7 @@
     @RenderBody()
     <!-- 底部 -->
     <footer class="blog-footer">
-        <p><span>Copyright</span><span>&copy;</span><span>2017</span><a href="http://www.shadameng.xyz">倚楼听风雨</a><span>Design By 傻大蒙</span></p>
+        <p><span>Copyright</span><span>&copy;</span><span>2017</span><a href="http://www.shadameng.xyz">北苍灵院</a><span>Design By 丹麦的面包不单卖</span></p>
         <p><a href="#" target="_blank">桂ICP备17004359号</a></p>
     </footer>
     <!--侧边导航-->

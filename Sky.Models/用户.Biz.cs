@@ -57,7 +57,7 @@ namespace Sky.Models
             var entity = new SysUser();
             entity.Id = 0;
             entity.LoginName = "sdm";
-            entity.NickName = "傻大蒙";
+            entity.NickName = "丹麦的面包不单卖";
             entity.LoginPwd = "sdmadmin".MD5();
             entity.AddTime = DateTime.Now;
             entity.LastLoginTime = DateTime.Now;

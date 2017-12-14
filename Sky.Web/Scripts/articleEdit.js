@@ -10,7 +10,7 @@
     var upload = layui.upload;
     var form = layui.form;
     var editor;
-    //layer.msg('傻大蒙好帅啊!');
+    //layer.msg('丹麦的面包不单卖好帅啊!');
     $(function () {
         editor = editormd("editormdContent", {//注意1：这里的就是上面的DIV的id属性值
             width: "90%",
