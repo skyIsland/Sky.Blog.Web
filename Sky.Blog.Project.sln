@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2008
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sky.Core", "Sky.Core\Sky.Core.csproj", "{162F323F-F1A4-4868-B205-80D557E4859C}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sky.Web", "Sky.Web\Sky.Web.csproj", "{1015C82A-2E0F-4394-BF58-43F1179B68FE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sky.Common", "Sky.Common\Sky.Common.csproj", "{84839DFC-8598-400E-9A88-E5D819BC410F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sky.Blog.CoreMVC", "Sky.Blog.CoreMVC\Sky.Blog.CoreMVC.csproj", "{6C5682D7-12C1-4D15-A5C6-89C173A05205}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,8 +35,15 @@ Global
 		{84839DFC-8598-400E-9A88-E5D819BC410F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84839DFC-8598-400E-9A88-E5D819BC410F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84839DFC-8598-400E-9A88-E5D819BC410F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C5682D7-12C1-4D15-A5C6-89C173A05205}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C5682D7-12C1-4D15-A5C6-89C173A05205}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C5682D7-12C1-4D15-A5C6-89C173A05205}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C5682D7-12C1-4D15-A5C6-89C173A05205}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C2F97F82-450F-4C6E-8FE9-DA259EE34B6A}
 	EndGlobalSection
 EndGlobal
