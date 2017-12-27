@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sky.Web", "Sky.Web\Sky.Web.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sky.Common", "Sky.Common\Sky.Common.csproj", "{84839DFC-8598-400E-9A88-E5D819BC410F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sky.Blog.CoreMVC", "Sky.Blog.CoreMVC\Sky.Blog.CoreMVC.csproj", "{6C5682D7-12C1-4D15-A5C6-89C173A05205}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,10 +33,6 @@ Global
 		{84839DFC-8598-400E-9A88-E5D819BC410F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84839DFC-8598-400E-9A88-E5D819BC410F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84839DFC-8598-400E-9A88-E5D819BC410F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6C5682D7-12C1-4D15-A5C6-89C173A05205}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6C5682D7-12C1-4D15-A5C6-89C173A05205}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6C5682D7-12C1-4D15-A5C6-89C173A05205}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6C5682D7-12C1-4D15-A5C6-89C173A05205}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
