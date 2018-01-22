@@ -1,5 +1,4 @@
-﻿Skip to content This repository Search Pull requests Issues Marketplace Explore @skyIsland Sign out Unwatch 1 Star 1 Fork 0 skyIsland/Sky.Blog Code Issues 0 Pull requests 0 Projects 0 Wiki Settings Insights Branch: master Find file Copy pathSky.Blog/Sky.Blog/Content/css/pintuer.css 3a7c295 on 19 Jun @skyIsland skyIsland 图片上传, 404, 500错误页配置, 移除原beginner.Blog 1 contributor RawBlameHistory 9799 lines (8208 sloc) 145 KB
-/*重设*/
+﻿/*重设*/
 html {
     margin: 0;
     padding: 0;
@@ -10192,7 +10191,5 @@ a {
             display: inline-block;
             width: 100%;
         }
-
-
 /*瀑布流,使用到的需要调整宽度*/
-© 2017 GitHub, Inc. Terms Privacy Security Status Help Contact GitHub API Training Shop Blog About
+
